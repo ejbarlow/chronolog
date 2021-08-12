@@ -11,6 +11,9 @@
 # production
 /build
 
+# dynamic assets
+/public/scans
+
 # misc
 .DS_Store
 .env.local
