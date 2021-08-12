@@ -23,3 +23,13 @@ Optimised, minified, in production mode & ready for deployment.
 ### `yarn eject`
 
 Abandon create-react-app and react-scripts for customisable config. 
+
+## Patch
+There is a patch file in `/utils/` which disables `useTypescriptIncrementalApi` for `ForkTsCheckerWebpackPlugin` in `react-scripts`.
+
+Disabling the option prevents a bug which could cause TypeScript to hang due to unresolved duplicated promises. Details can be found [where I found the patch](https://github.com/pixelkritzel/savages/blob/master/patchWebpackConfig.js).
+
+Run the patch from the root directory with:
+```console
+~$ node utils/patchWebpackConfig.js
+```
