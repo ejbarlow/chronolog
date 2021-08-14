@@ -16,13 +16,13 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 Fetches image details from a root directory and generates a manifest JSON file.
 
-See `/utils/createScanManifest.mjs` for more details.
+See `/utils/createScanManifest.js` for more details.
 
 ### `yarn patch-api`
 
 Fixes a compatibility issue by modifying the webpackConfig of `react-scripts` to disable `useTypescriptIncrementalApi` in `ForkTsCheckerWebpackPlugin`.
 
-See `/utils/createScanManifest.mjs` for more details.
+See `/utils/createScanManifest.js` for more details.
 
 ### `yarn test`
 
