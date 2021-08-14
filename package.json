@@ -25,8 +25,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "create-manifest": "node utils/createScanManifest.mjs",
-    "patch-api": "node utils/patchWebpackConfig.mjs"
+    "create-manifest": "node utils/createScanManifest.js",
+    "patch-api": "node utils/patchWebpackConfig.js"
   },
   "eslintConfig": {
     "extends": [
