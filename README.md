@@ -11,6 +11,10 @@ Bootstrapped with [Create React App](https://github.com/facebook/create-react-ap
 Runs ChronoLog in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
+### `yarn create-manifest`
+
+Fetches image details from a root directory and generates a manifest JSON file. See `/utils/createScanManifest.mjs` for more details.
+
 ### `yarn test`
 
 Launches Jest in the interactive watch mode.
