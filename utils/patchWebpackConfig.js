@@ -1,9 +1,14 @@
-/* Patch react-scripts' webpack.config.js
- * Prevents hanging due to duplicated promise
- * https://github.com/pixelkritzel/savages/blob/master/patchWebpackConfig.js */
+/**
+ * patch();
+ *
+ * Simple text replace on a `webpack.config.js` inside `node_modules`. Prevents
+ * hanging caused by unresolved duplicate promises.
+ *
+ * Retrieved from
+ * https://github.com/pixelkritzel/savages/blob/master/patchWebpackConfig.js
+ */
 
 import { promises as fs } from "fs";
-
 import log from "./log.mjs";
 
 async function patch() {

@@ -1,9 +1,6 @@
-import { promises as fs } from "fs";
-import { resolve } from "path";
-
-import log from "./log.mjs";
-
 /**
+ * createScanManifest(pathIn,  pathOut);
+ *
  * Scrapes the scan folder and generates a manifest file  with details of all
  * the images found.
  *
@@ -16,6 +13,12 @@ import log from "./log.mjs";
  * @param pathOut - Output path for the manifest JSON file, including filename.
  *  Defaults to `./public/scans/`.
  */
+
+import { promises as fs } from "fs";
+import { resolve } from "path";
+
+import log from "./log.mjs";
+
 export async function createScanManifest(
   pathIn = "./public/scans/",
   pathOut = "./public/scans/scan-manifest.json"

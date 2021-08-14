@@ -28,11 +28,14 @@ const COL = {
 };
 
 /**
+ * log();
+ *
  * Logging function with prefix and colors.
  *
  * @param msg - Message to log.
  * @param color - Optional color escape, defaults to fgWhite.
  */
+
 const log = (msg, color = "fgWhite") => {
   console.log(`${COL.dim}[cl] : ${COL.reset}${COL[color]}${msg}${COL.reset}`);
 };
