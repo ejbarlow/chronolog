@@ -1,34 +1,7 @@
 import { promises as fs } from "fs";
 import { resolve } from "path";
 
-// Color escape sequences for logging
-const COL = {
-  reset: "\x1b[0m",
-  bright: "\x1b[1m",
-  dim: "\x1b[2m",
-  underscore: "\x1b[4m",
-  blink: "\x1b[5m",
-  reverse: "\x1b[7m",
-  hidden: "\x1b[8m",
-
-  fgBlack: "\x1b[30m",
-  fgRed: "\x1b[31m",
-  fgGreen: "\x1b[32m",
-  fgYellow: "\x1b[33m",
-  fgBlue: "\x1b[34m",
-  fgMagenta: "\x1b[35m",
-  fgCyan: "\x1b[36m",
-  fgWhite: "\x1b[37m",
-
-  bgBlack: "\x1b[40m",
-  bgRed: "\x1b[41m",
-  bgGreen: "\x1b[42m",
-  bgYellow: "\x1b[43m",
-  bgBlue: "\x1b[44m",
-  bgMagenta: "\x1b[45m",
-  bgCyan: "\x1b[46m",
-  bgWhite: "\x1b[47m",
-};
+import log from "./log.mjs";
 
 /**
  * Scrapes the scan folder and generates a manifest file  with details of all
@@ -50,30 +23,24 @@ export async function createScanManifest(
   try {
     const scans = {};
     console.log();
-    log("\u1F50D Fetching scans...");
+    log(`${String.fromCodePoint(0x1f50e)} Fetching scans...`);
     const dirs = await fs.readdir(pathIn);
     for (const dir of dirs) {
       if (dir.match(/^\d{4}_\d{2}_\d{2}$/)) {
         const files = await fs.readdir(`${pathIn}/${dir}`);
         scans[dir] = files;
-        log(`  Added scans for ${dir}`, COL.dim);
+        log(`     Added scans for ${dir}`, "dim");
       }
     }
     await fs.writeFile(pathOut, JSON.stringify(scans, null, 2), "utf8");
-    log(`\u2705 Manifest written to`, COL.fgGreen);
-    log(`    \u1F4C1 ${resolve(pathOut)}`, COL.fgCyan);
+    log(`${String.fromCodePoint(0x2705)} Manifest written to:`, "fgGreen");
+    log(`     ${String.fromCodePoint(0x1f4c4)} ${resolve(pathOut)}`, "fgCyan");
   } catch (err) {
-    console.error(`\n\u274c Error reading ${pathIn}`, err);
+    console.error(
+      `\n${String.fromCodePoint(0x274c)} Error reading ${pathIn}`,
+      err
+    );
   }
 }
 
-/**
- * Logging function with prefix and colors.
- *
- * @param msg - Message to log.
- * @param color - Optional color escape, defaults to fgWhite.
- */
-function log(msg, color = COL.fgWhite) {
-  console.log(`${COL.dim}[cl] : ${COL.reset}${color}${msg}${COL.reset}`);
-}
 createScanManifest();

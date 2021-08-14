@@ -2,7 +2,9 @@
  * Prevents hanging due to duplicated promise
  * https://github.com/pixelkritzel/savages/blob/master/patchWebpackConfig.js */
 
-const fs = require("fs").promises;
+import { promises as fs } from "fs";
+
+import log from "./log.mjs";
 
 async function patch() {
   let webpackConfig = await fs.readFile(
@@ -17,6 +19,13 @@ async function patch() {
     "./node_modules/react-scripts/config/webpack.config.js",
     webpackConfig,
     "utf-8"
+  );
+  console.log();
+  log(
+    `${String.fromCodePoint(
+      0x2705
+    )} "./node_modules/react-scripts/config/webpack.config.js" patched`,
+    "fgGreen"
   );
 }
 patch();
