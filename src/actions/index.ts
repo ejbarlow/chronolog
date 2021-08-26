@@ -1,4 +1,4 @@
-import PageActions from "./PageActions";
+import PageActions from './PageActions';
 
 const GlobalActions = PageActions;
 

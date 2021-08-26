@@ -1,6 +1,6 @@
 // import App from './App';
 
-test("Reality intact", () => {
+test('Reality intact', () => {
   expect(true).toBe(true);
 });
 

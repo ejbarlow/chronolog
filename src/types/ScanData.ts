@@ -1,4 +1,4 @@
-import ImageProps from "./ImageProps";
+import ImageProps from './ImageProps';
 
 type ScanDataProps = {
   images: ImageProps[];

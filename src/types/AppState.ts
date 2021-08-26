@@ -1,4 +1,4 @@
-import ScanDataProps from "./ScanData";
+import ScanDataProps from './ScanData';
 
 type AppState = {
   scanData: ScanDataProps;
