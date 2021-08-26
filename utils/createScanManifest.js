@@ -14,34 +14,35 @@
  *  Defaults to `./public/scans/`.
  */
 
-import { promises as fs } from "fs";
-import { resolve } from "path";
+import { promises as fs } from 'fs';
+import { resolve } from 'path';
 
-import log from "./log.mjs";
+import log from './log.js';
 
-export async function createScanManifest(
-  pathIn = "./public/scans/",
-  pathOut = "./public/scans/scan-manifest.json"
+async function createScanManifest(
+  pathIn = './public/scans/',
+  pathOut = './public/scans/scan-manifest.json',
 ) {
   try {
     const scans = {};
-    console.log();
+    log();
     log(`${String.fromCodePoint(0x1f50e)} Fetching scans...`);
     const dirs = await fs.readdir(pathIn);
-    for (const dir of dirs) {
+    dirs.forEach(async (dir) => {
       if (dir.match(/^\d{4}_\d{2}_\d{2}$/)) {
         const files = await fs.readdir(`${pathIn}/${dir}`);
         scans[dir] = files;
-        log(`     Added scans for ${dir}`, "dim");
+        log(`     Added scans for ${dir}`, 'dim');
       }
-    }
-    await fs.writeFile(pathOut, JSON.stringify(scans, null, 2), "utf8");
-    log(`${String.fromCodePoint(0x2705)} Manifest written to:`, "fgGreen");
-    log(`     ${String.fromCodePoint(0x1f4c4)} ${resolve(pathOut)}`, "fgCyan");
+    });
+    await fs.writeFile(pathOut, JSON.stringify(scans, null, 2), 'utf8');
+    log(`${String.fromCodePoint(0x2705)} Manifest written to:`, 'fgGreen');
+    log(`     ${String.fromCodePoint(0x1f4c4)} ${resolve(pathOut)}`, 'fgCyan');
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error(
       `\n${String.fromCodePoint(0x274c)} Error reading ${pathIn}`,
-      err
+      err,
     );
   }
 }

@@ -6,4 +6,4 @@ type ImageProps = {
   version: number;
 };
 
-export { ImageProps as default };
+export type { ImageProps as default };

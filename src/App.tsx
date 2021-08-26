@@ -1,6 +1,7 @@
-import "./styles/index.scss";
+import React from 'react';
+import './styles/index.scss';
 
-function App() {
+function App(): React.ReactElement {
   return (
     <div className="App">
       <header className="App-header">
