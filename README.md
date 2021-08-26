@@ -28,6 +28,10 @@ See `/utils/createScanManifest.js` for more details.
 
 Launches Jest in the interactive watch mode.
 
+### `yarn lint`
+
+Runs eslint on the source. Ignores `./utils/`, which contains the Node utility scripts. ChronoLog uses the `airbnb` config, with additional packages for typescript and react hooks support.
+
 ### `yarn build`
 
 Builds ChronoLog for production to the `build` folder.
