@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import AppState from './types/AppState';
 import AppReducer from './reducers/AppReducer';
 import './styles/index.scss';
-import { ActionType } from './types/Actions';
+import * as Action from './actions/Actions';
 
 const initialState: AppState = {
   scanData: {
@@ -23,8 +23,8 @@ function App(): React.ReactElement {
       <header className="App-header">
         <h1>ChronoLog</h1>
         <p>{state.page}</p>
-        <button type="button" onClick={() => { dispatch({ type: ActionType.PAGE_SUB }); }}>-</button>
-        <button type="button" onClick={() => { dispatch({ type: ActionType.PAGE_ADD }); }}>+</button>
+        <button type="button" onClick={() => { dispatch(Action.PAGE_SUB()); }}>-</button>
+        <button type="button" onClick={() => { dispatch(Action.PAGE_ADD()); }}>+</button>
       </header>
     </div>
   );

@@ -1,14 +1,18 @@
 import AppState from '../types/AppState';
-import { ActionType, StateAction } from '../types/Actions';
+import { Action, ActionType } from '../types/Actions';
 
-const AppReducer = (state: AppState, action: StateAction): AppState => {
+const AppReducer = (state: AppState, action: ActionType): AppState => {
   switch (action.type) {
-    case ActionType.PAGE_ADD:
+    case Action.PAGE_ADD:
       return { ...state, page: state.page + 1 };
-    case ActionType.PAGE_SUB:
+    case Action.PAGE_SUB:
       return { ...state, page: state.page - 1 };
-    case ActionType.PAGE_SET:
+    case Action.PAGE_SET:
       return { ...state, page: action.payload };
+    case Action.DATE_SET:
+      return { ...state, date: action.payload };
+    case Action.SCANS_SRC:
+      return { ...state };
     default:
       return state; // TODO
   }
