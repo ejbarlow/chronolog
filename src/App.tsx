@@ -6,10 +6,8 @@ import "./styles/index.scss";
 import * as Action from "./actions/Actions";
 
 const initialState: AppState = {
-  scanData: {
-    images: [],
-    highestPage: 0,
-  },
+  scans: [],
+  highestPage: 0,
   page: 0,
   date: new Date(),
 };
@@ -21,9 +19,6 @@ function App(): React.ReactElement {
       <header className="App-header">
         <h1>ChronoLog</h1>
         <p>{state.page}</p>
-        {state.scanData.images.map(() => (
-          <p>An image?</p>
-        ))}
         <button
           type="button"
           onClick={() => {

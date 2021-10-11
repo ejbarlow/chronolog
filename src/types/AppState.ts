@@ -1,7 +1,8 @@
-import ScanDataProps from './ScanData';
+import ScanProps from "./ScanProps";
 
 type AppState = {
-  scanData: ScanDataProps;
+  scans: ScanProps[];
+  highestPage: number;
   page: number;
   date: Date;
 };

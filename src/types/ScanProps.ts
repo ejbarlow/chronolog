@@ -1,4 +1,4 @@
-type ImageProps = {
+type ScanProps = {
   uid: string;
   path: string;
   pages: number[];
@@ -6,4 +6,4 @@ type ImageProps = {
   version: number;
 };
 
-export type { ImageProps as default };
+export type { ScanProps as default };

@@ -14,37 +14,38 @@
  *  Defaults to `./public/scans/`.
  */
 
-import { promises as fs } from 'fs';
-import { resolve } from 'path';
+import { promises as fs } from "fs";
+import { resolve } from "path";
 
-import log from './log.js';
+import log from "./log.js";
 
 async function createScanManifest(
-  pathIn = './public/scans/',
-  pathOut = './public/scans/scan-manifest.json',
+  pathIn = "./public/scans/",
+  pathOut = "./public/scans/scan-manifest.json",
+  scans = {}
 ) {
   try {
-    const scans = {};
     log();
     log(`${String.fromCodePoint(0x1f50e)} Fetching scans...`);
     const dirs = await fs.readdir(pathIn);
-    dirs.forEach(async (dir) => {
+    for (let dir of dirs) {
       if (dir.match(/^\d{4}_\d{2}_\d{2}$/)) {
-        const files = await fs.readdir(`${pathIn}/${dir}`);
-        scans[dir] = files;
-        log(`     Added scans for ${dir}`, 'dim');
+        scans[dir] = await fs.readdir(`${pathIn}/${dir}`);
+        log(`     Added scans for ${dir}`, "dim");
       }
-    });
-    await fs.writeFile(pathOut, JSON.stringify(scans, null, 2), 'utf8');
-    log(`${String.fromCodePoint(0x2705)} Manifest written to:`, 'fgGreen');
-    log(`     ${String.fromCodePoint(0x1f4c4)} ${resolve(pathOut)}`, 'fgCyan');
+    }
   } catch (err) {
     // eslint-disable-next-line no-console
     console.error(
       `\n${String.fromCodePoint(0x274c)} Error reading ${pathIn}`,
-      err,
+      err
     );
   }
+  return { scans, pathOut };
 }
 
-createScanManifest();
+createScanManifest().then(async ({ scans, pathOut }) => {
+  await fs.writeFile(pathOut, JSON.stringify(scans, null, 2), "utf8");
+  log(`${String.fromCodePoint(0x2705)} Manifest written to:`, "fgGreen");
+  log(`     ${String.fromCodePoint(0x1f4c4)} ${resolve(pathOut)}`, "fgCyan");
+});
