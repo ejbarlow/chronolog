@@ -1,5 +1,4 @@
-// import React, { useEffect } from "react";
-import React from "react";
+import React, { useEffect } from "react";
 import AppState from "./types/AppState";
 import AppReducer from "./reducers/AppReducer";
 import "./styles/index.scss";
@@ -14,6 +13,11 @@ const initialState: AppState = {
 
 function App(): React.ReactElement {
   const [state, dispatch] = React.useReducer(AppReducer, initialState);
+
+  useEffect(() => {
+    // create scan table
+    dispatch(Action.SCANS_SRC("/scans/scan-manifest.json"));
+  }, []);
   return (
     <div className="App">
       <header className="App-header">

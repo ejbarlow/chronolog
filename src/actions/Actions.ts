@@ -1,4 +1,4 @@
-import { Action, ActionType } from '../types/Actions';
+import { Action, ActionType } from "../types/Actions";
 
 export const PAGE_ADD = (): ActionType => ({
   type: Action.PAGE_ADD,
