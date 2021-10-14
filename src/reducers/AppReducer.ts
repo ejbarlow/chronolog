@@ -4,9 +4,9 @@ import { Action, ActionType } from "../types/Actions";
 const AppReducer = (state: AppState, action: ActionType): AppState => {
   switch (action.type) {
     case Action.PAGE_ADD:
-      return { ...state, page: state.page + 1 };
+      return { ...state, page: state.page + 2 };
     case Action.PAGE_SUB:
-      return { ...state, page: state.page - 1 };
+      return { ...state, page: state.page - 2 };
     case Action.PAGE_SET:
       return { ...state, page: action.payload };
     case Action.DATE_SET:

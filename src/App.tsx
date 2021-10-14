@@ -34,6 +34,18 @@ function App(): React.ReactElement {
             height: "400px",
           }}
         >
+          {state.scans.length && (
+            <p>
+              {
+                state.scans.reduce((closest, curr) => {
+                  return Math.abs(curr.date.getTime() - state.date.getTime()) <
+                    Math.abs(closest.date.getTime() - state.date.getTime())
+                    ? curr
+                    : closest;
+                }).uid
+              }
+            </p>
+          )}
           {state.scans.map(
             (scan) =>
               scan.pages.includes(state.page) && (
