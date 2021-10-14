@@ -1,4 +1,5 @@
 import { Action, ActionType } from "../types/Actions";
+import ScanProps from "../types/ScanProps";
 
 export const PAGE_ADD = (): ActionType => ({
   type: Action.PAGE_ADD,
@@ -18,7 +19,23 @@ export const PAGE_SET = (pageNum: number): ActionType => ({
   payload: pageNum,
 });
 
-export const SCANS_SRC = (path: string): ActionType => ({
-  type: Action.SCANS_SRC,
-  payload: path,
+export const SCANS_SRC = ({
+  scans,
+  highestPage,
+}: {
+  scans: ScanProps[];
+  highestPage: number;
+}): ActionType => {
+  return {
+    type: Action.SCANS_SRC,
+    payload: {
+      scans,
+      highestPage,
+    },
+  };
+};
+
+export const MANIFEST_SRC = (manifestPath: string): ActionType => ({
+  type: Action.MANIFEST_SRC,
+  payload: manifestPath,
 });
