@@ -8,41 +8,43 @@
  * https://github.com/pixelkritzel/savages/blob/master/patchWebpackConfig.js
  */
 
-import { promises as fs } from "fs";
-import log from "./log.mjs";
+import { promises as fs } from 'fs';
+import log from './log.js';
 
 async function patch() {
   let webpackConfig = await fs
-    .readFile("./node_modules/react-scripts/config/webpack.config.js", "utf-8")
+    .readFile('./node_modules/react-scripts/config/webpack.config.js', 'utf-8')
     .catch((err) => {
+      // eslint-disable-next-line no-console
       console.error(
         `\n${String.fromCodePoint(0x274c)} Error reading webpack.config.js`,
-        err
+        err,
       );
     });
   webpackConfig = webpackConfig.replace(
-    "new ForkTsCheckerWebpackPlugin({",
-    "new ForkTsCheckerWebpackPlugin({useTypescriptIncrementalApi: false,"
+    'new ForkTsCheckerWebpackPlugin({',
+    'new ForkTsCheckerWebpackPlugin({useTypescriptIncrementalApi: false,',
   );
   await fs
     .writeFile(
-      "./node_modules/react-scripts/config/webpack.config.js",
+      './node_modules/react-scripts/config/webpack.config.js',
       webpackConfig,
-      "utf-8"
+      'utf-8',
     )
     .then(() => {
-      console.log();
+      log();
       log(
         `${String.fromCodePoint(
-          0x2705
+          0x2705,
         )} "./node_modules/react-scripts/config/webpack.config.js" patched`,
-        "fgGreen"
+        'fgGreen',
       );
     })
     .catch((err) => {
+      // eslint-disable-next-line no-console
       console.error(
         `\n${String.fromCodePoint(0x274c)} Error writing webpack.config.js`,
-        err
+        err,
       );
     });
 }
