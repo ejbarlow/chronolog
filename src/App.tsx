@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import * as Action from "./actions/Actions";
 import AppReducer from "./reducers/AppReducer";
-import "./styles/index.scss";
 import AppState from "./types/AppState";
 import importScanData from "./utils/importScanData";
 import Spinner from "./components/Spinner";
+
+import "normalize.css";
+import "./styles/index.scss";
 
 const initialState: AppState = {
   scans: [],
@@ -26,30 +28,28 @@ function App(): React.ReactElement {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>ChronoLog</h1>
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            height: "400px",
-          }}
-        >
-          {state.scans.length && (
-            <p>
-              {
-                state.scans.reduce((closest, curr) => {
-                  return Math.abs(curr.date.getTime() - state.date.getTime()) <
-                    Math.abs(closest.date.getTime() - state.date.getTime())
-                    ? curr
-                    : closest;
-                }).uid
-              }
-            </p>
-          )}
+        <h1>Title</h1>
+        {state.scans.length && (
+          <img
+            className="scan-main"
+            src={
+              state.scans.reduce((closest, curr) => {
+                return Math.abs(curr.date.getTime() - state.date.getTime()) <
+                  Math.abs(closest.date.getTime() - state.date.getTime())
+                  ? curr
+                  : closest;
+              }).path
+            }
+          />
+        )}
+        <div className="scan-nav">
           {state.scans.map(
             (scan) =>
               scan.pages.includes(state.page) && (
-                <p key={scan.uid}>{scan.uid}</p>
+                <div
+                  className="scan-thumbnail"
+                  style={{ backgroundImage: `url(${scan.path})` }}
+                ></div>
               )
           )}
         </div>
