@@ -26,9 +26,11 @@ function App(): React.ReactElement {
   }, [state.manifestPath]);
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="app">
+      <header className="app-header">
         <h1>Title</h1>
+      </header>
+      <main>
         {state.scans.length && (
           <img
             className="scan-main"
@@ -42,11 +44,14 @@ function App(): React.ReactElement {
             }
           />
         )}
+      </main>
+      <nav>
         <div className="scan-nav">
           {state.scans.map(
             (scan) =>
               scan.pages.includes(state.page) && (
                 <div
+                  key={`${scan.uid}_thumb`}
                   className="scan-thumbnail"
                   style={{ backgroundImage: `url(${scan.path})` }}
                 ></div>
@@ -66,7 +71,7 @@ function App(): React.ReactElement {
             dispatch(Action.PAGE_SET(pageNum));
           }}
         />
-      </header>
+      </nav>
     </div>
   );
 }

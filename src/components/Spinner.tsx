@@ -17,7 +17,9 @@ const Spinner: FC<SpinnerProps> = ({
 }) => {
   return (
     <div className={`spinner ${className}`}>
-      <button onClick={onDecrease}>←</button>
+      <button className="spinner-button" onClick={onDecrease}>
+        ←
+      </button>
       <form style={{}}>
         <input
           style={{}}
