@@ -54,12 +54,16 @@ function App(): React.ReactElement {
           )}
         </div>
         <Spinner
+          className="pageNav"
           value={state.page}
           onIncrease={() => {
             dispatch(Action.PAGE_ADD());
           }}
           onDecrease={() => {
             dispatch(Action.PAGE_SUB());
+          }}
+          onSet={(pageNum: number) => {
+            dispatch(Action.PAGE_SET(pageNum));
           }}
         />
       </header>
