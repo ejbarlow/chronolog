@@ -25,21 +25,24 @@ html, body {
 }
 
 .app {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 100vh;
+  display: grid;
+  height: 100vh;
+  grid-template-rows: 10rem 3fr 1fr;
   text-align: center;
   .app-header {
-    margin: $margin 0;
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
     text-align: center;
     font-size: calc(10px + 2vmin);
     color: white;
   }
   main {
+    padding: 0 $margin $margin;
+  }
+  nav {
     display: flex;
-    align-items: center;
-    flex: 1;
+    flex-direction: column;
   }
 }
 

@@ -7,6 +7,7 @@ import Spinner from "./components/Spinner";
 
 import "normalize.css";
 import "./styles/index.scss";
+import ScanProps from "./types/ScanProps";
 
 const initialState: AppState = {
   scans: [],
@@ -18,12 +19,35 @@ const initialState: AppState = {
 
 function App(): React.ReactElement {
   const [state, dispatch] = React.useReducer(AppReducer, initialState);
+  const [currentScan, setCurrentScan] = React.useState<ScanProps | undefined>(
+    undefined
+  );
+
+  const findScan = () => {
+    setCurrentScan(
+      state.scans
+        .filter((scan) => scan.pages.includes(state.page))
+        .reduce((closest, curr) => {
+          return Math.abs(curr.date.getTime() - state.date.getTime()) <
+            Math.abs(closest.date.getTime() - state.date.getTime()) &&
+            curr.pages.includes(state.page)
+            ? curr
+            : closest;
+        })
+    );
+  };
 
   useEffect(() => {
     importScanData(state.manifestPath).then((scanData) => {
       dispatch(Action.SCANS_SRC(scanData));
     });
   }, [state.manifestPath]);
+
+  useEffect(() => {
+    if (state.scans.length) {
+      findScan();
+    }
+  }, [state.date, state.scans, state.page]);
 
   return (
     <div className="app">
@@ -32,16 +56,23 @@ function App(): React.ReactElement {
       </header>
       <main>
         {state.scans.length && (
-          <img
+          <div
             className="scan-main"
-            src={
-              state.scans.reduce((closest, curr) => {
-                return Math.abs(curr.date.getTime() - state.date.getTime()) <
-                  Math.abs(closest.date.getTime() - state.date.getTime())
-                  ? curr
-                  : closest;
-              }).path
-            }
+            style={{
+              backgroundImage: `url(${
+                state.scans
+                  .filter((scan) => scan.pages.includes(state.page))
+                  .reduce((closest, curr) => {
+                    return Math.abs(
+                      curr.date.getTime() - state.date.getTime()
+                    ) <
+                      Math.abs(closest.date.getTime() - state.date.getTime()) &&
+                      curr.pages.includes(state.page)
+                      ? curr
+                      : closest;
+                  }).path
+              })`,
+            }}
           />
         )}
       </main>
@@ -52,8 +83,13 @@ function App(): React.ReactElement {
               scan.pages.includes(state.page) && (
                 <div
                   key={`${scan.uid}_thumb`}
-                  className="scan-thumbnail"
+                  className={`scan-thumbnail${
+                    scan === currentScan ? " scan-thumbnail--active" : ""
+                  }`}
                   style={{ backgroundImage: `url(${scan.path})` }}
+                  onClick={() => {
+                    dispatch(Action.DATE_SET(scan.date));
+                  }}
                 ></div>
               )
           )}
