@@ -4,6 +4,7 @@
 
 * {
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 html, body {
@@ -27,6 +28,7 @@ html, body {
 .app {
   display: grid;
   height: 100vh;
+  width: 100vw;
   grid-template-rows: 10rem 3fr 1fr;
   text-align: center;
   .app-header {
@@ -38,6 +40,7 @@ html, body {
     color: white;
   }
   main {
+    box-sizing: border-box;
     padding: 0 $margin $margin;
   }
   nav {

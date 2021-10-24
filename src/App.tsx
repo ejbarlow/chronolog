@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import * as Action from "./actions/Actions";
 import AppReducer from "./reducers/AppReducer";
 import AppState from "./types/AppState";
@@ -18,11 +18,10 @@ const initialState: AppState = {
 };
 
 function App(): React.ReactElement {
-  const [state, dispatch] = React.useReducer(AppReducer, initialState);
-  const [currentScan, setCurrentScan] = React.useState<ScanProps | undefined>(
+  const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [currentScan, setCurrentScan] = useState<ScanProps | undefined>(
     undefined
   );
-
   const findScan = () => {
     setCurrentScan(
       state.scans
@@ -54,29 +53,23 @@ function App(): React.ReactElement {
       <header className="app-header">
         <h1>Title</h1>
       </header>
-      <main>
+      <main className="app-main">
         {state.scans.length && (
-          <div
-            className="scan-main"
-            style={{
-              backgroundImage: `url(${
-                state.scans
-                  .filter((scan) => scan.pages.includes(state.page))
-                  .reduce((closest, curr) => {
-                    return Math.abs(
-                      curr.date.getTime() - state.date.getTime()
-                    ) <
-                      Math.abs(closest.date.getTime() - state.date.getTime()) &&
-                      curr.pages.includes(state.page)
-                      ? curr
-                      : closest;
-                  }).path
-              })`,
-            }}
+          <img
+            src={state.scans
+              .filter((scan) => scan.pages.includes(state.page))
+              .reduce((closest, curr) => {
+                return Math.abs(curr.date.getTime() - state.date.getTime()) <
+                  Math.abs(closest.date.getTime() - state.date.getTime()) &&
+                  curr.pages.includes(state.page)
+                  ? curr
+                  : closest;
+              })
+              .path.toString()}
           />
         )}
       </main>
-      <nav>
+      <nav className="app-nav">
         <div className="scan-nav">
           {state.scans.map(
             (scan) =>
@@ -86,16 +79,17 @@ function App(): React.ReactElement {
                   className={`scan-thumbnail${
                     scan === currentScan ? " scan-thumbnail--active" : ""
                   }`}
-                  style={{ backgroundImage: `url(${scan.path})` }}
                   onClick={() => {
                     dispatch(Action.DATE_SET(scan.date));
                   }}
-                ></div>
+                >
+                  <img src={scan.path} />
+                </div>
               )
           )}
         </div>
         <Spinner
-          className="pageNav"
+          className="page-nav"
           value={state.page}
           onIncrease={() => {
             dispatch(Action.PAGE_ADD());

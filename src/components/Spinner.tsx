@@ -16,7 +16,7 @@ const Spinner: FC<SpinnerProps> = ({
   onSet,
 }) => {
   return (
-    <div className={`spinner ${className}`}>
+    <div className={`${className} spinner`}>
       <button className="spinner-button" onClick={onDecrease}>
         ←
       </button>
