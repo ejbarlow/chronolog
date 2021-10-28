@@ -71,7 +71,15 @@ function App(): React.ReactElement {
         )}
       </main>
       <nav className="app-nav">
-        <ScanNav scans={state.scans.filter(scan => scan.pages.includes(state.page))} onScanSelect={(val) => {dispatch(Action.DATE_SET(val))}}/>
+        <ScanNav
+          scans={state.scans.filter((scan) => {
+            return scan.pages.includes(state.page);
+          })}
+          onScanSelect={(d) => {
+            dispatch(Action.DATE_SET(d));
+          }}
+          currentScan={currentScan}
+        />
         <Spinner
           className="page-nav"
           value={state.page}
@@ -81,8 +89,8 @@ function App(): React.ReactElement {
           onDecrease={() => {
             dispatch(Action.PAGE_SUB());
           }}
-          onSet={(pageNum: number) => {
-            dispatch(Action.PAGE_SET(pageNum));
+          onSet={(p) => {
+            dispatch(Action.PAGE_SET(p));
           }}
         />
       </nav>
