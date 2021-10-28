@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ScanProps from "../types/ScanProps";
+import { SwitchTransition, CSSTransition } from "react-transition-group";
 
 type ScanNavProps = {
   scans: ScanProps[];
@@ -12,25 +13,39 @@ const ScanNav = ({
   onScanSelect,
   currentScan,
 }: ScanNavProps): React.ReactElement => {
+  const [transitionFlag, setFlag] = useState(false);
+  useEffect(() => {
+    setFlag(!transitionFlag);
+  }, [scans]);
   return (
-    <div className="scan-nav">
-      {scans.map((scan) => {
-        const active = currentScan === scan;
-        return (
-          <div
-            key={`${scan.uid}_thumb`}
-            className={`scan-thumbnail${
-              active ? " scan-thumbnail-active" : ""
-            }`}
-            onClick={() => {
-              onScanSelect(scan.date);
-            }}
-          >
-            <img src={scan.path} />
-          </div>
-        );
-      })}
-    </div>
+    <SwitchTransition>
+      <CSSTransition
+        key={transitionFlag ? "in" : "out"}
+        addEndListener={(node, done) => {
+          node.addEventListener("transitioned", done, false);
+        }}
+        className="scan-nav"
+      >
+        <div>
+          {scans.map((scan) => {
+            const active = currentScan === scan;
+            return (
+              <div
+                key={`${scan.uid}_thumb`}
+                className={`scan-thumbnail${
+                  active ? " scan-thumbnail-active" : ""
+                }`}
+                onClick={() => {
+                  onScanSelect(scan.date);
+                }}
+              >
+                <img src={scan.path} />
+              </div>
+            );
+          })}
+        </div>
+      </CSSTransition>
+    </SwitchTransition>
   );
 };
 
