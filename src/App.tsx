@@ -4,6 +4,7 @@ import AppReducer from "./reducers/AppReducer";
 import AppState from "./types/AppState";
 import importScanData from "./utils/importScanData";
 import Spinner from "./components/Spinner";
+import ScanNav from "./components/ScanNav";
 
 import "normalize.css";
 import "./styles/index.scss";
@@ -70,24 +71,7 @@ function App(): React.ReactElement {
         )}
       </main>
       <nav className="app-nav">
-        <div className="scan-nav">
-          {state.scans.map(
-            (scan) =>
-              scan.pages.includes(state.page) && (
-                <div
-                  key={`${scan.uid}_thumb`}
-                  className={`scan-thumbnail${
-                    scan === currentScan ? " scan-thumbnail--active" : ""
-                  }`}
-                  onClick={() => {
-                    dispatch(Action.DATE_SET(scan.date));
-                  }}
-                >
-                  <img src={scan.path} />
-                </div>
-              )
-          )}
-        </div>
+        <ScanNav scans={state.scans.filter(scan => scan.pages.includes(state.page))} onScanSelect={(val) => {dispatch(Action.DATE_SET(val))}}/>
         <Spinner
           className="page-nav"
           value={state.page}
