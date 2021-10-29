@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import ScanProps from "../types/ScanProps";
-import { SwitchTransition, CSSTransition } from "react-transition-group";
+import { CSSTransition } from "react-transition-group";
 
 type ScanNavProps = {
   scans: ScanProps[];
@@ -13,20 +13,17 @@ const ScanNav = ({
   onScanSelect,
   currentScan,
 }: ScanNavProps): React.ReactElement => {
-  const [transitionFlag, setFlag] = useState(false);
+  const [ inProp, setIn ] = useState(false);
   useEffect(() => {
-    setFlag(!transitionFlag);
-  }, [scans]);
+    setIn(true);
+  }, []);
   return (
-    <SwitchTransition>
       <CSSTransition
-        key={transitionFlag ? "in" : "out"}
-        addEndListener={(node, done) => {
-          node.addEventListener("transitioned", done, false);
-        }}
-        className="scan-nav"
+        in={inProp}
+        classNames="scan-nav"
+        timeout={200}
       >
-        <div>
+        <div className="scan-nav">
           {scans.map((scan) => {
             const active = currentScan === scan;
             return (
@@ -45,7 +42,6 @@ const ScanNav = ({
           })}
         </div>
       </CSSTransition>
-    </SwitchTransition>
   );
 };
 
