@@ -72,9 +72,8 @@ function App(): React.ReactElement {
       </main>
       <nav className="app-nav">
         <ScanNav
-          scans={state.scans.filter((scan) => {
-            return scan.pages.includes(state.page);
-          })}
+          scans={state.scans}
+          page={state.page}
           onScanSelect={(d) => {
             dispatch(Action.DATE_SET(d));
           }}

@@ -18,22 +18,22 @@
   &-enter {
     opacity: 0;
   }
-  &-exit-done {
-    opacity: 0;
-  }
   &-enter-active {
     opacity: 1;
-    transition: all 1s;
-  }
-  &-exit {
-    opacity: 1;
+    transition: all $transition-time;
   }
   &-enter-done {
     opacity: 1;
   }
+  &-exit {
+    opacity: 1;
+  }
   &-exit-active {
     opacity: 0;
-    transition: all 1s;
+    transition: all transition-time;
+  }
+  &-exit-done {
+    opacity: 0;
   }
   .scan-thumbnail {
     cursor: pointer;
