@@ -30,7 +30,7 @@
   }
   &-exit-active {
     opacity: 0;
-    transition: all transition-time;
+    transition: all $transition-time;
   }
   &-exit-done {
     opacity: 0;
