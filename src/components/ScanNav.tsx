@@ -29,7 +29,7 @@ const ScanNav = ({
     }, 100);
     setTimeout(() => {
       setIn(true);
-    }, 200);
+    }, 250);
   }, [scans, page]);
 
   const scanNavNode = useRef(null);

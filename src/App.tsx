@@ -5,6 +5,7 @@ import AppState from "./types/AppState";
 import importScanData from "./utils/importScanData";
 import Spinner from "./components/Spinner";
 import ScanNav from "./components/ScanNav";
+import ScanView from "./components/ScanView";
 
 import "normalize.css";
 import "./styles/index.scss";
@@ -56,8 +57,8 @@ function App(): React.ReactElement {
       </header>
       <main className="app-main">
         {state.scans.length && (
-          <img
-            src={state.scans
+          <ScanView
+            scan={state.scans
               .filter((scan) => scan.pages.includes(state.page))
               .reduce((closest, curr) => {
                 return Math.abs(curr.date.getTime() - state.date.getTime()) <
@@ -65,8 +66,7 @@ function App(): React.ReactElement {
                   curr.pages.includes(state.page)
                   ? curr
                   : closest;
-              })
-              .path.toString()}
+              })}
           />
         )}
       </main>
