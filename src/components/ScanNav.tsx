@@ -15,51 +15,29 @@ const ScanNav = ({
   onScanSelect,
   currentScan,
 }: ScanNavProps): React.ReactElement => {
-  const [inProp, setIn] = useState(false);
-  const [displayScans, setDisplayScans] = useState(scans);
-
+  const [displayScans, setDisplayScans] = useState<ScanProps[]>([]);
   useEffect(() => {
-    setIn(false);
-    setTimeout(() => {
-      setDisplayScans(
-        scans.filter((scan) => {
-          return scan.pages.includes(page);
-        })
-      );
-    }, 100);
-    setTimeout(() => {
-      setIn(true);
-    }, 250);
+    setDisplayScans(scans.filter((scan) => scan.pages.includes(page)));
   }, [scans, page]);
-
-  const scanNavNode = useRef(null);
-
   return (
-    <CSSTransition
-      in={inProp}
-      classNames="scan-nav"
-      timeout={100}
-      nodeRef={scanNavNode}
-    >
-      <div ref={scanNavNode} className="scan-nav">
-        {displayScans.map((scan) => {
-          const active = currentScan === scan;
-          return (
-            <div
-              key={`${scan.uid}_thumb`}
-              className={`scan-thumbnail${
-                active ? " scan-thumbnail-active" : ""
-              }`}
-              onClick={() => {
-                onScanSelect(scan.date);
-              }}
-            >
-              <img src={scan.path} />
-            </div>
-          );
-        })}
-      </div>
-    </CSSTransition>
+    <div className="scan-nav">
+      {displayScans.map((scan) => {
+        const active = currentScan === scan;
+        return (
+          <div
+            key={`${scan.uid}_thumb`}
+            className={`scan-thumbnail${
+              active ? " scan-thumbnail-active" : ""
+            }`}
+            onClick={() => {
+              onScanSelect(scan.date);
+            }}
+          >
+            <img src={scan.path} />
+          </div>
+        );
+      })}
+    </div>
   );
 };
 
