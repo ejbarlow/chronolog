@@ -4,10 +4,21 @@ import ScanProps from "../types/ScanProps";
 import ScanImage from "./ScanImage";
 
 type ScanViewProps = {
-  scan: ScanProps;
+  scans: ScanProps[];
+  page: number;
+  date: Date;
 };
 
-const ScanView = ({ scan }: ScanViewProps): React.ReactElement => {
+const ScanView = ({ scans, page, date }: ScanViewProps): React.ReactElement => {
+  const scan = scans
+    .filter((scan) => scan.pages.includes(page))
+    .reduce((closest, curr) => {
+      return Math.abs(curr.date.getTime() - date.getTime()) <
+        Math.abs(closest.date.getTime() - date.getTime()) &&
+        curr.pages.includes(page)
+        ? curr
+        : closest;
+    });
   const scanViewNode = createRef<HTMLDivElement>();
   return (
     <TransitionGroup className="scan-view">

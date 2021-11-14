@@ -21,22 +21,24 @@ const ScanNav = ({
   }, [scans, page]);
   return (
     <div className="scan-nav">
-      {displayScans.map((scan) => {
-        const active = currentScan === scan;
-        return (
-          <div
-            key={`${scan.uid}_thumb`}
-            className={`scan-thumbnail${
-              active ? " scan-thumbnail-active" : ""
-            }`}
-            onClick={() => {
-              onScanSelect(scan.date);
-            }}
-          >
-            <img src={scan.path} />
-          </div>
-        );
-      })}
+      {displayScans
+        .sort((a, b) => (a.date > b.date ? 1 : -1))
+        .map((scan) => {
+          const active = currentScan === scan;
+          return (
+            <div
+              key={`${scan.uid}_thumb`}
+              className={`scan-thumbnail${
+                active ? " scan-thumbnail-active" : ""
+              }`}
+              onClick={() => {
+                onScanSelect(scan.date);
+              }}
+            >
+              <img src={scan.path} />
+            </div>
+          );
+        })}
     </div>
   );
 };

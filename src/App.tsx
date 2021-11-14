@@ -6,10 +6,12 @@ import importScanData from "./utils/importScanData";
 import Spinner from "./components/Spinner";
 import ScanNav from "./components/ScanNav";
 import ScanView from "./components/ScanView";
+import ScanImage from "./components/ScanImage";
 
 import "normalize.css";
 import "./styles/index.scss";
 import ScanProps from "./types/ScanProps";
+import Overview from "./components/Overview";
 
 const initialState: AppState = {
   scans: [],
@@ -21,6 +23,7 @@ const initialState: AppState = {
 
 function App(): React.ReactElement {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [showOverview, setShowOverview] = useState(false);
   const [currentScan, setCurrentScan] = useState<ScanProps | undefined>(
     undefined
   );
@@ -54,21 +57,27 @@ function App(): React.ReactElement {
     <div className="app">
       <header className="app-header">
         <h1>Title</h1>
+        <button
+          onClick={() => {
+            setShowOverview(!showOverview);
+          }}
+        >
+          Thumbnails
+        </button>
       </header>
       <main className="app-main">
-        {state.scans.length && (
-          <ScanView
-            scan={state.scans
-              .filter((scan) => scan.pages.includes(state.page))
-              .reduce((closest, curr) => {
-                return Math.abs(curr.date.getTime() - state.date.getTime()) <
-                  Math.abs(closest.date.getTime() - state.date.getTime()) &&
-                  curr.pages.includes(state.page)
-                  ? curr
-                  : closest;
-              })}
-          />
-        )}
+        {state.scans.length &&
+          (showOverview ? (
+            <Overview
+              scans={state.scans}
+              onScanSelect={(p) => {
+                dispatch(Action.PAGE_SET(p));
+                setShowOverview(false);
+              }}
+            />
+          ) : (
+            <ScanView scans={state.scans} page={state.page} date={state.date} />
+          ))}
       </main>
       <nav className="app-nav">
         <ScanNav
