@@ -4,9 +4,8 @@ import AppReducer from "./reducers/AppReducer";
 import AppState from "./types/AppState";
 import importScanData from "./utils/importScanData";
 import Spinner from "./components/Spinner";
-import ScanNav from "./components/ScanNav";
+import PageNav from "./components/PageNav";
 import ScanView from "./components/ScanView";
-import ScanImage from "./components/ScanImage";
 
 import "normalize.css";
 import "./styles/index.scss";
@@ -80,7 +79,7 @@ function App(): React.ReactElement {
           ))}
       </main>
       <nav className="app-nav">
-        <ScanNav
+        <PageNav
           scans={state.scans}
           page={state.page}
           onScanSelect={(d) => {

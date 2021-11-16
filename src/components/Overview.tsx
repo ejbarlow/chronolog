@@ -5,7 +5,10 @@ type OverviewProps = {
   onScanSelect: (page: number) => void;
 };
 
-const Overview = ({ scans, onScanSelect }: OverviewProps) => {
+const Overview = ({
+  scans,
+  onScanSelect,
+}: OverviewProps): React.ReactElement => {
   return (
     <div
       style={{

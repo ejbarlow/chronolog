@@ -1,3 +1,26 @@
 $margin: 4rem;
 
 $transition-time: 0.1s;
+
+.fade {
+  &-enter {
+    opacity: 0;
+  }
+  &-enter-active {
+    opacity: 1;
+    transition: all $transition-time ease-in $transition-time;
+  }
+  &-enter-done {
+    opacity: 1;
+  }
+  &-exit {
+    opacity: 1;
+  }
+  &-exit-active {
+    opacity: 0;
+    transition: all $transition-time ease-in;
+  }
+  &-exit-done {
+    opacity: 0;
+  }
+}
