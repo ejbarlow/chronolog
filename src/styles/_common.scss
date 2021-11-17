@@ -2,7 +2,8 @@ $margin: 4rem;
 
 $transition-time: 0.1s;
 
-.fade {
+.nav-transition,
+.scan-transition {
   &-enter {
     opacity: 0;
   }
@@ -22,5 +23,51 @@ $transition-time: 0.1s;
   }
   &-exit-done {
     opacity: 0;
+  }
+}
+
+.scan-view--left {
+  .scan-transition {
+    &-enter {
+      left: 2rem;
+    }
+    &-enter-active {
+      left: 0;
+    }
+    &-enter-done {
+      left: 0;
+    }
+    &-exit {
+      left: 0;
+    }
+    &-exit-active {
+      left: -2rem;
+    }
+    &-exit-done {
+      left: -2rem;
+    }
+  }
+}
+
+.scan-view--right {
+  .scan-transition {
+    &-enter {
+      right: 2rem;
+    }
+    &-enter-active {
+      right: 0;
+    }
+    &-enter-done {
+      right: 0;
+    }
+    &-exit {
+      right: 0;
+    }
+    &-exit-active {
+      right: -2rem;
+    }
+    &-exit-done {
+      right: -2rem;
+    }
   }
 }

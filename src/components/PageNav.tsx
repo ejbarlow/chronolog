@@ -28,7 +28,7 @@ const PageNav = ({
           key={displayScans[0].uid || "0"}
           nodeRef={scanNavNode}
           timeout={200}
-          classNames="fade"
+          classNames="nav-transition"
         >
           <ScanNav
             scans={displayScans}
