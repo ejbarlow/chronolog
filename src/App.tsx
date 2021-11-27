@@ -55,14 +55,7 @@ function App(): React.ReactElement {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Title</h1>
-        <button
-          onClick={() => {
-            setShowOverview(!showOverview);
-          }}
-        >
-          Thumbnails
-        </button>
+        <h1>Chronolog</h1>
       </header>
       <main className="app-main">
         {state.scans.length &&
@@ -79,14 +72,26 @@ function App(): React.ReactElement {
           ))}
       </main>
       <nav className="app-nav">
-        <PageNav
-          scans={state.scans}
-          page={state.page}
-          onScanSelect={(d) => {
-            dispatch(Action.DATE_SET(d));
+        {!showOverview ? (
+          <PageNav
+            scans={state.scans}
+            page={state.page}
+            onScanSelect={(d) => {
+              dispatch(Action.DATE_SET(d));
+            }}
+            currentScan={currentScan}
+          />
+        ) : (
+          <div style={{ flex: 1 }}></div>
+        )}
+        <a
+          className="thumb-nav"
+          onClick={() => {
+            setShowOverview(!showOverview);
           }}
-          currentScan={currentScan}
-        />
+        >
+          &#9638;
+        </a>
         <Spinner
           className="page-nav"
           value={state.page}

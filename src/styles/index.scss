@@ -12,12 +12,12 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: Georgia, Times, Times New Roman, serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   h1 {
+    color: #aaf;
+    font-weight: 100;
     margin: 0;
   }
   #root {
@@ -29,19 +29,22 @@ html, body {
   display: grid;
   height: 100vh;
   width: 100vw;
-  grid-template-rows: 10rem 3fr 1fr;
+  grid-template-rows: 5rem 3fr 1fr;
   text-align: center;
   .app-header {
+    background-color: #050511;
     display: flex;
     align-items: center;
     margin: 0 auto;
+    padding-left: $margin;
     text-align: center;
-    font-size: calc(10px + 2vmin);
+    font-size: calc(6px + 1vmin);
     color: white;
+    width: 100%;
   }
   main {
     box-sizing: border-box;
-    padding: 0 $margin $margin;
+    padding: $margin;
   }
   nav {
     display: flex;
