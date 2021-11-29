@@ -32,6 +32,7 @@ const Overview = ({
         .sort((a, b) => (a.pages[0] > b.pages[0] ? 1 : -1))
         .map((scan) => (
           <img
+            key={`thumb-${scan.uid}`}
             onClick={() => {
               onScanSelect(scan.pages[0]);
             }}
