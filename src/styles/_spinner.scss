@@ -1,5 +1,6 @@
 .spinner {
   display: flex;
+  height: $btnHeight;
   width: 100%;
   form, button {
     flex: 1;
@@ -8,12 +9,12 @@
     input {
       background: none;
       border: none;
-      border-bottom: 4px solid #333366;
       box-sizing: border-box;
       color: #fff;
       font-size: 1.5rem;
       height: 100%;
       text-align: center;
+      padding: 0;
       width: 100%;
       &:focus {
         outline: none;
@@ -27,5 +28,6 @@
     color: #fff;
     cursor: pointer;
     user-select: none;
+    padding: 0;
   }
 }

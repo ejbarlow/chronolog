@@ -14,6 +14,11 @@ export const DATE_SET = (date: Date): ActionType => ({
   payload: date,
 });
 
+export const VOL_SET = (volNum: number): ActionType => ({
+  type: Action.VOL_SET,
+  payload: volNum,
+});
+
 export const PAGE_SET = (pageNum: number): ActionType => ({
   type: Action.PAGE_SET,
   payload: pageNum,

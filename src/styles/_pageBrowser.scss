@@ -21,11 +21,16 @@
 }
 
 .thumb-nav {
-  display: inline;
-  margin-bottom: 1rem;
+  display: flex;
+  width: 33%;
+  background-color: #050511;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
   border: none;
+  height: $btnHeight;
   outline: none;
-  color: #333366;
+  color: #aaf;
   cursor: pointer;
   font-size: 2rem;
   cursor: pointer;

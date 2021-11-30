@@ -27,11 +27,17 @@ async function createScanManifest(
   try {
     log();
     log(`${String.fromCodePoint(0x1f50e)} Fetching scans...`);
-    const dirs = await fs.readdir(pathIn);
-    for (let dir of dirs) {
-      if (dir.match(/^\d{4}_\d{2}_\d{2}$/)) {
-        scans[dir] = await fs.readdir(`${pathIn}/${dir}`);
-        log(`     Added scans for ${dir}`, "dim");
+    const vols = await fs.readdir(pathIn);
+    for (let vol of vols) {
+      if (vol.match(/^\d+$/)) {
+        const dirs = await fs.readdir(`${pathIn}/${vol}`);
+        for (let dir of dirs) {
+          if (dir.match(/^\d{4}_\d{2}_\d{2}$/)) {
+            scans[vol] = scans[vol] || {};
+            scans[vol][dir] = await fs.readdir(`${pathIn}/${vol}/${dir}`);
+            log(`     Added scans for ${vol}/${dir}`, "dim");
+          }
+        }
       }
     }
   } catch (err) {

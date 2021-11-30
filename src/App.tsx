@@ -14,6 +14,7 @@ import Overview from "./components/Overview";
 
 const initialState: AppState = {
   scans: [],
+  volume: 1,
   highestPage: 0,
   page: 0,
   date: new Date(),
@@ -61,20 +62,25 @@ function App(): React.ReactElement {
         {state.scans.length &&
           (showOverview ? (
             <Overview
-              scans={state.scans}
+              scans={state.scans.filter((scan) => scan.volume === state.volume)}
               onScanSelect={(p) => {
                 dispatch(Action.PAGE_SET(p));
                 setShowOverview(false);
               }}
             />
           ) : (
-            <ScanView scans={state.scans} page={state.page} date={state.date} />
+            <ScanView
+              scans={state.scans}
+              volume={state.volume}
+              page={state.page}
+              date={state.date}
+            />
           ))}
       </main>
       <nav className="app-nav">
         {!showOverview ? (
           <PageNav
-            scans={state.scans}
+            scans={state.scans.filter((scan) => scan.volume === state.volume)}
             page={state.page}
             onScanSelect={(d) => {
               dispatch(Action.DATE_SET(d));
@@ -105,6 +111,25 @@ function App(): React.ReactElement {
             dispatch(Action.PAGE_SET(p));
           }}
         />
+        <div className="vol-nav">
+          {Array.from(
+            new Set(
+              state.scans.reduce((volumes: number[], scan) => {
+                return [...volumes, scan.volume];
+              }, [])
+            )
+          ).map((vol) => (
+            <button
+              className={vol === state.volume ? "vol--active" : ""}
+              key={`btn-vol-${vol}`}
+              onClick={() => {
+                dispatch(Action.VOL_SET(vol));
+              }}
+            >
+              {vol}
+            </button>
+          ))}
+        </div>
       </nav>
     </div>
   );

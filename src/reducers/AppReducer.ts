@@ -20,6 +20,8 @@ const AppReducer = (state: AppState, action: ActionType): AppState => {
       return action.payload > 0 && action.payload < state.highestPage
         ? { ...state, page: action.payload }
         : state;
+    case Action.VOL_SET:
+      return { ...state, volume: action.payload };
     case Action.DATE_SET:
       return { ...state, date: action.payload };
     case Action.SCANS_SRC:

@@ -49,6 +49,22 @@ html, body {
   nav {
     display: flex;
     flex-direction: column;
+    .vol-nav {
+      display: flex;
+      width: 100%;
+      button {
+        background-color: #080814;
+        border: none;
+        color: #222244;
+        cursor: pointer;
+        flex: 1;
+        height: $btnHeight;
+        &.vol--active {
+          background-color: #050511;
+          color: #aaf;
+        }
+      }
+    }
   }
 }
 
