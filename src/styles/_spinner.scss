@@ -7,7 +7,7 @@
   }
   form {
     input {
-      background: none;
+      background-color: $delta;
       border: none;
       box-sizing: border-box;
       color: #fff;
@@ -23,10 +23,12 @@
   }
 
   button {
-    background-color: #333366;
+    background-color: $comfy;
     border: none;
-    color: #fff;
+    color: $dusty;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 2rem;
     user-select: none;
     padding: 0;
   }

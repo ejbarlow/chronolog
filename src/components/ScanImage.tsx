@@ -9,7 +9,7 @@ const ScanImage = React.forwardRef<HTMLDivElement, ScanImageProps>(
   ({ scan }: ScanImageProps, ref): React.ReactElement => {
     return (
       <div ref={ref} className="scan-image">
-        <img src={scan.path.toString()} />;
+        <img src={scan.path.toString()} />
       </div>
     );
   }

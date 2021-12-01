@@ -90,14 +90,16 @@ function App(): React.ReactElement {
         ) : (
           <div style={{ flex: 1 }}></div>
         )}
-        <a
-          className="thumb-nav"
-          onClick={() => {
-            setShowOverview(!showOverview);
-          }}
-        >
-          &#9638;
-        </a>
+        <div className="thumb-nav-container">
+          <a
+            className="thumb-nav"
+            onClick={() => {
+              setShowOverview(!showOverview);
+            }}
+          >
+            &#9638;
+          </a>
+        </div>
         <Spinner
           className="page-nav"
           value={state.page}

@@ -16,12 +16,13 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   h1 {
-    color: #aaf;
+    background-color: $comfy;
+    color: $cararra;
     font-weight: 100;
     margin: 0;
   }
   #root {
-    background-color: #111122;
+    background-color: $cararra;
   }
 }
 
@@ -32,7 +33,7 @@ html, body {
   grid-template-rows: 5rem 3fr 1fr;
   text-align: center;
   .app-header {
-    background-color: #050511;
+    background-color: $water;
     display: flex;
     align-items: center;
     margin: 0 auto;
@@ -53,15 +54,15 @@ html, body {
       display: flex;
       width: 100%;
       button {
-        background-color: #080814;
+        background-color: $delta;
         border: none;
-        color: #222244;
+        color: $dusty;
         cursor: pointer;
         flex: 1;
         height: $btnHeight;
         &.vol--active {
-          background-color: #050511;
-          color: #aaf;
+          background-color: $dusty;
+          color: $comfy;
         }
       }
     }
