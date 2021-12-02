@@ -2,19 +2,24 @@ import React, { createRef, useState, useEffect } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import ScanProps from "../types/ScanProps";
 import ScanImage from "./ScanImage";
+import FastAverageColor from "fast-average-color";
 
 type ScanViewProps = {
   scans: ScanProps[];
   volume: number;
   page: number;
   date: Date;
+  styleCallback?: (arg0: string) => void;
 };
+
+const fac = new FastAverageColor();
 
 const ScanView = ({
   scans,
   page,
   date,
   volume,
+  styleCallback,
 }: ScanViewProps): React.ReactElement => {
   const [scanDir, setScanDir] = useState("scan-view--left");
   const [displayPage, setDisplayPage] = useState(page);
@@ -34,6 +39,13 @@ const ScanView = ({
     setScanDir(`scan-view--${page > displayPage ? "left" : "right"}`);
     setDisplayPage(page);
   }, [page]);
+  useEffect(() => {
+    if (styleCallback) {
+      fac.getColorAsync(scan.path).then((color) => {
+        styleCallback(color.hex);
+      });
+    }
+  }, [displayPage]);
   return (
     <TransitionGroup className={`scan-view ${scanDir}`}>
       <CSSTransition

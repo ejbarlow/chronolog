@@ -6,7 +6,6 @@ import importScanData from "./utils/importScanData";
 import Spinner from "./components/Spinner";
 import PageNav from "./components/PageNav";
 import ScanView from "./components/ScanView";
-import FastAverageColor from "fast-average-color";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChessBoard } from "@fortawesome/free-solid-svg-icons";
 
@@ -23,8 +22,6 @@ const initialState: AppState = {
   date: new Date(),
   manifestPath: "/scans/scan-manifest.json",
 };
-
-const fac = new FastAverageColor();
 
 function App(): React.ReactElement {
   const [state, dispatch] = useReducer(AppReducer, initialState);
@@ -45,9 +42,6 @@ function App(): React.ReactElement {
             : closest;
         })
     );
-    // todo
-    // fac.getColorAsync(container.querySelector('img'))
-    // .then(color => console.log(color))
   };
 
   useEffect(() => {
@@ -83,6 +77,7 @@ function App(): React.ReactElement {
               volume={state.volume}
               page={state.page}
               date={state.date}
+              styleCallback={setBackground}
             />
           ))}
       </main>
