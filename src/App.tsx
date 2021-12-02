@@ -57,7 +57,7 @@ function App(): React.ReactElement {
   }, [state.date, state.scans, state.page]);
 
   return (
-    <div className="app" style={{ backgroundColor: background }}>
+    <div className={`app`} style={{ backgroundColor: background }}>
       <header className="app-header">
         <h1>Chronolog</h1>
       </header>
@@ -96,7 +96,7 @@ function App(): React.ReactElement {
         )}
         <div className="thumb-nav-container">
           <a
-            className="thumb-nav"
+            className={`thumb-nav${showOverview ? ' thumb-nav--active' : ''}`}
             onClick={() => {
               setShowOverview(!showOverview);
             }}
