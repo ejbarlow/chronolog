@@ -36,6 +36,10 @@
     cursor: pointer;
     font-size: 2rem;
     cursor: pointer;
+    transition: width 0.2s;
+    &--active {
+      width: 100%;
+    }
   }
 }
 
