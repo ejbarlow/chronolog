@@ -1,4 +1,6 @@
 import React, { FC } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 type SpinnerProps = {
   className: string | undefined;
@@ -17,8 +19,8 @@ const Spinner: FC<SpinnerProps> = ({
 }) => {
   return (
     <div className={`${className} spinner`}>
-      <button className="spinner-button" onClick={onDecrease}>
-        ←
+      <button onClick={onDecrease}>
+        <FontAwesomeIcon icon={faCaretLeft} />
       </button>
       <form style={{}}>
         <input
@@ -29,7 +31,9 @@ const Spinner: FC<SpinnerProps> = ({
           }}
         />
       </form>
-      <button onClick={onIncrease}>→</button>
+      <button onClick={onIncrease}>
+        <FontAwesomeIcon icon={faCaretRight} />
+      </button>
     </div>
   );
 };

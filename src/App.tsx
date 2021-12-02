@@ -7,6 +7,8 @@ import Spinner from "./components/Spinner";
 import PageNav from "./components/PageNav";
 import ScanView from "./components/ScanView";
 import FastAverageColor from "fast-average-color";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChessBoard } from "@fortawesome/free-solid-svg-icons";
 
 import "normalize.css";
 import "./styles/index.scss";
@@ -104,7 +106,7 @@ function App(): React.ReactElement {
               setShowOverview(!showOverview);
             }}
           >
-            &#9638;
+            <FontAwesomeIcon icon={faChessBoard} />
           </a>
         </div>
         <Spinner
