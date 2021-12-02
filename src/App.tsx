@@ -6,6 +6,7 @@ import importScanData from "./utils/importScanData";
 import Spinner from "./components/Spinner";
 import PageNav from "./components/PageNav";
 import ScanView from "./components/ScanView";
+import FastAverageColor from "fast-average-color";
 
 import "normalize.css";
 import "./styles/index.scss";
@@ -21,12 +22,15 @@ const initialState: AppState = {
   manifestPath: "/scans/scan-manifest.json",
 };
 
+const fac = new FastAverageColor();
+
 function App(): React.ReactElement {
   const [state, dispatch] = useReducer(AppReducer, initialState);
   const [showOverview, setShowOverview] = useState(false);
   const [currentScan, setCurrentScan] = useState<ScanProps | undefined>(
     undefined
   );
+  const [background, setBackground] = useState("#F0F0E9");
   const findScan = () => {
     setCurrentScan(
       state.scans
@@ -39,6 +43,9 @@ function App(): React.ReactElement {
             : closest;
         })
     );
+    // todo
+    // fac.getColorAsync(container.querySelector('img'))
+    // .then(color => console.log(color))
   };
 
   useEffect(() => {
@@ -54,7 +61,7 @@ function App(): React.ReactElement {
   }, [state.date, state.scans, state.page]);
 
   return (
-    <div className="app">
+    <div className="app" style={{ backgroundColor: background }}>
       <header className="app-header">
         <h1>Chronolog</h1>
       </header>

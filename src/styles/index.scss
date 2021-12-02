@@ -56,13 +56,13 @@ html, body {
       button {
         background-color: $delta;
         border: none;
-        color: $dusty;
+        color: $comfy;
         cursor: pointer;
         flex: 1;
         height: $btnHeight;
         &.vol--active {
           background-color: $dusty;
-          color: $comfy;
+          color: $cararra;
         }
       }
     }
