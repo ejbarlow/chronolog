@@ -20,6 +20,9 @@
       &:focus {
         outline: none;
       }
+      &::selection {
+        background-color: $dusty;
+      }
     }
   }
 

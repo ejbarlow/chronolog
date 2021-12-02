@@ -35,6 +35,9 @@ async function createScanManifest(
           if (dir.match(/^\d{4}_\d{2}_\d{2}$/)) {
             scans[vol] = scans[vol] || {};
             scans[vol][dir] = await fs.readdir(`${pathIn}/${vol}/${dir}`);
+            scans[vol][dir] = scans[vol][dir].filter((file) => {
+              return file.indexOf("thumb") > -1 ? false : true;
+            });
             log(`     Added scans for ${vol}/${dir}`, "dim");
           }
         }

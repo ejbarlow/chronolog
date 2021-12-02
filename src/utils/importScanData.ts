@@ -10,7 +10,7 @@ async function importScanDataFromManifest(manifestPath: string) {
   for (const vol in data) {
     for (const date in data[vol]) {
       for (const scan in data[vol][date]) {
-        const fileStr = data[vol][date][scan];
+        const fileStr: string = data[vol][date][scan];
         const dirStr = `${scanRoot}/${vol}/${date}`;
         const [y, m, d] = date.split("_").map((num: string) => parseInt(num));
         const dateProp = new Date(y, m - 1, d);
@@ -19,6 +19,7 @@ async function importScanDataFromManifest(manifestPath: string) {
         scans.push({
           uid: id(),
           path: `${dirStr}/${fileStr}`,
+          thumbPath: `${dirStr}/${fileStr.replace(/\./, "_thumb.")}`,
           volume: parseInt(vol),
           pages,
           date: dateProp,

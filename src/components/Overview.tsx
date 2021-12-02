@@ -36,7 +36,7 @@ const Overview = ({
             onClick={() => {
               onScanSelect(scan.pages[0]);
             }}
-            src={scan.path}
+            src={scan.thumbPath}
             style={{
               cursor: "pointer",
               maxHeight: "100%",
