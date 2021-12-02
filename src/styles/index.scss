@@ -52,6 +52,7 @@ html, body {
     display: flex;
     flex-direction: column;
     .vol-nav {
+      @include uiShadow;
       display: flex;
       width: 100%;
       button {

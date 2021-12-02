@@ -1,4 +1,5 @@
 .spinner {
+  @include uiShadow;
   display: flex;
   height: $btnHeight;
   width: 100%;

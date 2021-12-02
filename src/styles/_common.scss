@@ -9,6 +9,10 @@ $cararra: #F0F0E9;
 $comfy: #F0D1D1;
 $dusty: #A39393;
 
+@mixin uiShadow {
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+}
+
 .nav-transition,
 .scan-transition {
   &-enter {

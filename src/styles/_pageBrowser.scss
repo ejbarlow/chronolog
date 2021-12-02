@@ -21,6 +21,7 @@
 }
 
 .thumb-nav-container {
+  @include uiShadow;
   background-color: $water;
   .thumb-nav {
     display: flex;
