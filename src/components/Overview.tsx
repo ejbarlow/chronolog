@@ -16,6 +16,7 @@ const Overview = ({
         height: "100%",
         gridTemplateRows: "repeat(9, 1fr)",
         gridTemplateColumns: "repeat(9, 1fr)",
+        gridGap: "0.5rem",
         alignItems: "center",
         justifyContent: "center",
       }}

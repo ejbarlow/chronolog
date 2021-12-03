@@ -19,6 +19,7 @@ html, body {
     background-color: $comfy;
     color: $cararra;
     font-weight: 100;
+    font-size: 2rem;
     margin: 0;
   }
   #root {
@@ -28,9 +29,10 @@ html, body {
 
 .app {
   display: grid;
-  height: 100vh;
-  width: 100vw;
-  grid-template-rows: 5rem auto 18rem;
+  height: 100%;
+  width: 100%;
+  grid-template-rows: 5rem 1fr auto;
+  position: fixed;
   text-align: center;
   transition: background-color 0.2s;
   .app-header {

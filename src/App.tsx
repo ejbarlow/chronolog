@@ -82,7 +82,7 @@ function App(): React.ReactElement {
           ))}
       </main>
       <nav className="app-nav">
-        {!showOverview ? (
+        {!showOverview && (
           <PageNav
             scans={state.scans.filter((scan) => scan.volume === state.volume)}
             page={state.page}
@@ -91,12 +91,10 @@ function App(): React.ReactElement {
             }}
             currentScan={currentScan}
           />
-        ) : (
-          <div style={{ flex: 1 }}></div>
         )}
         <div className="thumb-nav-container">
           <a
-            className={`thumb-nav${showOverview ? ' thumb-nav--active' : ''}`}
+            className={`thumb-nav${showOverview ? " thumb-nav--active" : ""}`}
             onClick={() => {
               setShowOverview(!showOverview);
             }}
