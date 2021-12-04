@@ -1,6 +1,7 @@
 @import "./common";
 @import "./pageBrowser";
 @import "./spinner";
+@import "./overview";
 
 * {
   box-sizing: border-box;
@@ -45,6 +46,11 @@ html, body {
     font-size: calc(6px + 1vmin);
     color: white;
     width: 100%;
+  }
+  .app-main {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    grid-gap: 1rem;
   }
   main {
     box-sizing: border-box;

@@ -1,5 +1,6 @@
 import AppState from "../types/AppState";
 import { Action, ActionType } from "../types/Actions";
+import ScanProps from "../types/ScanProps";
 
 const AppReducer = (state: AppState, action: ActionType): AppState => {
   switch (action.type) {
@@ -21,16 +22,37 @@ const AppReducer = (state: AppState, action: ActionType): AppState => {
         ? { ...state, page: action.payload }
         : state;
     case Action.VOL_SET:
-      return { ...state, volume: action.payload };
+      const volHighest = getHighestPage(
+        state.scans.filter((scan) => scan.volume === action.payload)
+      );
+      return {
+        ...state,
+        volume: action.payload,
+        highestPage: volHighest,
+        page: state.page < volHighest ? state.page : volHighest,
+      };
     case Action.DATE_SET:
       return { ...state, date: action.payload };
     case Action.SCANS_SRC:
-      return { ...state, ...action.payload };
+      const scansHighest = getHighestPage(
+        action.payload.scans.filter((scan) => scan.volume === state.volume)
+      );
+      return {
+        ...state,
+        scans: action.payload.scans,
+        highestPage: scansHighest,
+        page: state.page < scansHighest ? state.page : scansHighest,
+      };
     case Action.MANIFEST_SRC:
       return { ...state, manifestPath: action.payload };
     default:
       return state; // TODO
   }
+};
+
+const getHighestPage = (scans: ScanProps[]) => {
+  const { pages } = scans.sort((a, b) => (a.pages[0] > b.pages[0] ? -1 : 1))[0];
+  return pages[pages.length - 1];
 };
 
 export { AppReducer as default };

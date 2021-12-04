@@ -10,17 +10,7 @@ const Overview = ({
   onScanSelect,
 }: OverviewProps): React.ReactElement => {
   return (
-    <div
-      style={{
-        display: "grid",
-        height: "100%",
-        gridTemplateRows: "repeat(9, 1fr)",
-        gridTemplateColumns: "repeat(9, 1fr)",
-        gridGap: "0.5rem",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <div className="overview">
       {scans
         .sort((a, b) => (a.date < b.date ? 1 : -1))
         .reduce<ScanProps[]>((pageScans, scan) => {

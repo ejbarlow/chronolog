@@ -1,5 +1,5 @@
 $margin: 2rem;
-$btnHeight: 3rem;
+$btnHeight: calc(2rem + 1vw);
 
 $transition-time: 0.1s;
 
@@ -10,7 +10,7 @@ $comfy: #F0D1D1;
 $dusty: #A39393;
 
 @mixin uiShadow {
-  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
 
 .nav-transition,

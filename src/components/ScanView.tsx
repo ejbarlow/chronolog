@@ -23,9 +23,10 @@ const ScanView = ({
 }: ScanViewProps): React.ReactElement => {
   const [scanDir, setScanDir] = useState("scan-view--left");
   const [displayPage, setDisplayPage] = useState(page);
+  const [displayVol, setDisplayVol] = useState(volume);
   const scan = scans
     .filter(
-      (scan) => scan.pages.includes(displayPage) && scan.volume === volume
+      (scan) => scan.pages.includes(displayPage) && scan.volume === displayVol
     )
     .reduce((closest, curr) => {
       return Math.abs(curr.date.getTime() - date.getTime()) <
@@ -39,6 +40,9 @@ const ScanView = ({
     setScanDir(`scan-view--${page > displayPage ? "left" : "right"}`);
     setDisplayPage(page);
   }, [page]);
+  useEffect(() => {
+    setDisplayVol(volume);
+  }, [volume]);
   useEffect(() => {
     if (styleCallback) {
       fac.getColorAsync(scan.path).then((color) => {

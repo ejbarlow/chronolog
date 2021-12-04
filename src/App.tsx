@@ -72,49 +72,43 @@ function App(): React.ReactElement {
               }}
             />
           ) : (
-            <ScanView
-              scans={state.scans}
-              volume={state.volume}
-              page={state.page}
-              date={state.date}
-              styleCallback={setBackground}
-            />
+            <>
+              <ScanView
+                scans={state.scans}
+                volume={state.volume}
+                page={state.page}
+                date={state.date}
+                styleCallback={setBackground}
+              />
+              <PageNav
+                scans={state.scans.filter(
+                  (scan) => scan.volume === state.volume
+                )}
+                page={state.page}
+                onScanSelect={(d) => {
+                  dispatch(Action.DATE_SET(d));
+                }}
+                currentScan={currentScan}
+              />
+            </>
           ))}
       </main>
       <nav className="app-nav">
         {!showOverview && (
-          <PageNav
-            scans={state.scans.filter((scan) => scan.volume === state.volume)}
-            page={state.page}
-            onScanSelect={(d) => {
-              dispatch(Action.DATE_SET(d));
+          <Spinner
+            className="page-nav"
+            value={state.page}
+            onIncrease={() => {
+              dispatch(Action.PAGE_ADD());
             }}
-            currentScan={currentScan}
+            onDecrease={() => {
+              dispatch(Action.PAGE_SUB());
+            }}
+            onSet={(p) => {
+              dispatch(Action.PAGE_SET(p));
+            }}
           />
         )}
-        <div className="thumb-nav-container">
-          <a
-            className={`thumb-nav${showOverview ? " thumb-nav--active" : ""}`}
-            onClick={() => {
-              setShowOverview(!showOverview);
-            }}
-          >
-            <FontAwesomeIcon icon={faChessBoard} />
-          </a>
-        </div>
-        <Spinner
-          className="page-nav"
-          value={state.page}
-          onIncrease={() => {
-            dispatch(Action.PAGE_ADD());
-          }}
-          onDecrease={() => {
-            dispatch(Action.PAGE_SUB());
-          }}
-          onSet={(p) => {
-            dispatch(Action.PAGE_SET(p));
-          }}
-        />
         <div className="vol-nav">
           {Array.from(
             new Set(
@@ -133,6 +127,16 @@ function App(): React.ReactElement {
               {vol}
             </button>
           ))}
+        </div>
+        <div className="thumb-nav-container">
+          <a
+            className={`thumb-nav${showOverview ? " thumb-nav--active" : ""}`}
+            onClick={() => {
+              setShowOverview(!showOverview);
+            }}
+          >
+            <FontAwesomeIcon icon={faChessBoard} />
+          </a>
         </div>
       </nav>
     </div>
