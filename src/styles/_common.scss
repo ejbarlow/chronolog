@@ -2,6 +2,7 @@ $margin: 2rem;
 $btnHeight: calc(2rem + 1vw);
 
 $transition-time: 0.1s;
+$transition-dist: 5%;
 
 $delta: #AFAFAE;
 $water: #D1E3F0;
@@ -39,46 +40,40 @@ $dusty: #A39393;
 
 .scan-view--left {
   .scan-transition {
+    &-appear,
     &-enter {
-      left: 2rem;
+      transform: translateX(-50% + $transition-dist);
     }
-    &-enter-active {
-      left: 0;
-    }
-    &-enter-done {
-      left: 0;
-    }
+    &-appear-active,
+    &-appear-done,
+    &-enter-active,
+    &-enter-done,
     &-exit {
-      left: 0;
+      transform: translateX(-50%);
     }
-    &-exit-active {
-      left: -2rem;
-    }
+    &-exit-active,
     &-exit-done {
-      left: -2rem;
+      transform: translateX(-50% - $transition-dist);
     }
   }
 }
 
 .scan-view--right {
   .scan-transition {
+    &-appear,
     &-enter {
-      right: 2rem;
+      transform: translateX(-50% - $transition-dist);
     }
-    &-enter-active {
-      right: 0;
-    }
-    &-enter-done {
-      right: 0;
-    }
+    &-appear-active,
+    &-appear-done,
+    &-enter-active,
+    &-enter-done,
     &-exit {
-      right: 0;
+      transform: translateX(-50%);
     }
-    &-exit-active {
-      right: -2rem;
-    }
+    &-exit-active,
     &-exit-done {
-      right: -2rem;
+      transform: translateX(-50% + $transition-dist);
     }
   }
 }

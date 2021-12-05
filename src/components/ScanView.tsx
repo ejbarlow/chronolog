@@ -35,7 +35,7 @@ const ScanView = ({
         ? curr
         : closest;
     });
-  const scanViewNode = createRef<HTMLDivElement>();
+  const scanViewNode = createRef<HTMLImageElement>();
   useEffect(() => {
     setScanDir(`scan-view--${page > displayPage ? "left" : "right"}`);
     setDisplayPage(page);
@@ -54,6 +54,7 @@ const ScanView = ({
     <TransitionGroup className={`scan-view ${scanDir}`}>
       <CSSTransition
         key={scan.uid}
+        appear={true}
         nodeRef={scanViewNode}
         timeout={200}
         classNames="scan-transition"

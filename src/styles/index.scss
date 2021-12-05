@@ -8,6 +8,19 @@
   overflow: hidden;
 }
 
+*::-webkit-scrollbar {
+  width: 1rem;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: $water;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: $comfy;
+  cursor: pointer;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -28,7 +41,7 @@ html, body {
   }
 }
 
-.app {
+.chronolog {
   display: grid;
   height: 100%;
   width: 100%;

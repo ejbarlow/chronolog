@@ -28,11 +28,6 @@ const Overview = ({
               onScanSelect(scan.pages[0]);
             }}
             src={scan.thumbPath}
-            style={{
-              cursor: "pointer",
-              maxHeight: "100%",
-              maxWidth: "100%",
-            }}
           />
         ))}
     </div>

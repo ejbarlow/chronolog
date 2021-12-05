@@ -22,9 +22,9 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
         {displayScans
           .sort((a, b) => (a.date > b.date ? 1 : -1))
           .map((scan) => {
-            const active = currentScan === scan;
+            const active = currentScan?.uid === scan.uid;
             return (
-              <div
+              <img
                 key={`${scan.uid}_thumb`}
                 className={`scan-thumbnail${
                   active ? " scan-thumbnail-active" : ""
@@ -32,9 +32,8 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
                 onClick={() => {
                   onScanSelect(scan.date);
                 }}
-              >
-                <img src={scan.path} />
-              </div>
+                src={scan.path}
+              />
             );
           })}
       </div>

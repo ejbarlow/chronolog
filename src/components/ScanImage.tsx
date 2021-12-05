@@ -5,13 +5,9 @@ type ScanImageProps = {
   scan: ScanProps;
 };
 
-const ScanImage = React.forwardRef<HTMLDivElement, ScanImageProps>(
+const ScanImage = React.forwardRef<HTMLImageElement, ScanImageProps>(
   ({ scan }: ScanImageProps, ref): React.ReactElement => {
-    return (
-      <div ref={ref} className="scan-image">
-        <img src={scan.path.toString()} />
-      </div>
-    );
+    return <img ref={ref} className="scan-image" src={scan.path.toString()} />;
   }
 );
 

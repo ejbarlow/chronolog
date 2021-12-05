@@ -31,16 +31,20 @@ function App(): React.ReactElement {
   );
   const [background, setBackground] = useState("#F0F0E9");
   const findScan = () => {
+    const filteredScans = state.scans.filter(
+      (scan) => scan.pages.includes(state.page) && scan.volume === state.volume
+    );
+    if (filteredScans.length < 1) {
+      return undefined;
+    }
     setCurrentScan(
-      state.scans
-        .filter((scan) => scan.pages.includes(state.page))
-        .reduce((closest, curr) => {
-          return Math.abs(curr.date.getTime() - state.date.getTime()) <
-            Math.abs(closest.date.getTime() - state.date.getTime()) &&
-            curr.pages.includes(state.page)
-            ? curr
-            : closest;
-        })
+      filteredScans.reduce((closest, curr) => {
+        return Math.abs(curr.date.getTime() - state.date.getTime()) <
+          Math.abs(closest.date.getTime() - state.date.getTime()) &&
+          curr.pages.includes(state.page)
+          ? curr
+          : closest;
+      })
     );
   };
 
@@ -57,7 +61,7 @@ function App(): React.ReactElement {
   }, [state.date, state.scans, state.page]);
 
   return (
-    <div className={`app`} style={{ backgroundColor: background }}>
+    <div className="chronolog" style={{ backgroundColor: background }}>
       <header className="app-header">
         <h1>Chronolog</h1>
       </header>
