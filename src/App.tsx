@@ -70,6 +70,7 @@ function App(): React.ReactElement {
           (showOverview ? (
             <Overview
               scans={state.scans.filter((scan) => scan.volume === state.volume)}
+              currentScan={currentScan}
               onScanSelect={(p) => {
                 dispatch(Action.PAGE_SET(p));
                 setShowOverview(false);
@@ -78,10 +79,8 @@ function App(): React.ReactElement {
           ) : (
             <>
               <ScanView
-                scans={state.scans}
-                volume={state.volume}
+                currentScan={currentScan}
                 page={state.page}
-                date={state.date}
                 styleCallback={setBackground}
               />
               <PageNav

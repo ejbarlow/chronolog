@@ -2,11 +2,13 @@ import ScanProps from "../types/ScanProps";
 
 type OverviewProps = {
   scans: ScanProps[];
+  currentScan?: ScanProps;
   onScanSelect: (page: number) => void;
 };
 
 const Overview = ({
   scans,
+  currentScan,
   onScanSelect,
 }: OverviewProps): React.ReactElement => {
   return (
@@ -24,6 +26,9 @@ const Overview = ({
         .map((scan) => (
           <img
             key={`thumb-${scan.uid}`}
+            className={
+              scan.pages[0] === currentScan?.pages[0] ? "thumb-active" : ""
+            }
             onClick={() => {
               onScanSelect(scan.pages[0]);
             }}

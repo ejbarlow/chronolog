@@ -42,18 +42,18 @@ $dusty: #A39393;
   .scan-transition {
     &-appear,
     &-enter {
-      transform: translateX(-50% + $transition-dist);
+      transform: translate(-50% + $transition-dist, -50%);
     }
     &-appear-active,
     &-appear-done,
     &-enter-active,
     &-enter-done,
     &-exit {
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
     }
     &-exit-active,
     &-exit-done {
-      transform: translateX(-50% - $transition-dist);
+      transform: translate(-50% - $transition-dist, -50%);
     }
   }
 }
@@ -62,18 +62,18 @@ $dusty: #A39393;
   .scan-transition {
     &-appear,
     &-enter {
-      transform: translateX(-50% - $transition-dist);
+      transform: translate(-50% - $transition-dist, -50%);
     }
     &-appear-active,
     &-appear-done,
     &-enter-active,
     &-enter-done,
     &-exit {
-      transform: translateX(-50%);
+      transform: translate(-50%, -50%);
     }
     &-exit-active,
     &-exit-done {
-      transform: translateX(-50% + $transition-dist);
+      transform: translate(-50% + $transition-dist, -50%);
     }
   }
 }
