@@ -18,7 +18,7 @@ const AppReducer = (state: AppState, action: ActionType): AppState => {
         page: state.page - 2 >= 0 ? state.page - 2 : 0,
       };
     case Action.PAGE_SET:
-      return action.payload > -1 && action.payload < state.highestPage
+      return action.payload > -1 && action.payload <= state.highestPage
         ? { ...state, page: action.payload }
         : state;
     case Action.VOL_SET:

@@ -92,7 +92,9 @@ function App(): React.ReactElement {
               />
               <PageNav
                 scans={state.scans.filter(
-                  (scan) => scan.volume === state.volume
+                  (scan) =>
+                    scan.volume === state.volume &&
+                    scan.pages.includes(state.page)
                 )}
                 page={state.page}
                 onScanSelect={(d) => {

@@ -1,3 +1,4 @@
+import { createRef, useEffect, useState } from "react";
 import ScanProps from "../types/ScanProps";
 
 type OverviewProps = {
@@ -11,8 +12,29 @@ const Overview = ({
   currentScan,
   onScanSelect,
 }: OverviewProps): React.ReactElement => {
+  const imgRef = createRef<HTMLImageElement>();
+  const containerRef = createRef<HTMLDivElement>();
+  const [scrollPos, setScrollPos] = useState(0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (containerRef.current && imgRef.current) {
+        setScrollPos(
+          imgRef.current.getBoundingClientRect().top -
+            containerRef.current.getBoundingClientRect().top
+        );
+      }
+    }, 50);
+  }, []);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.scrollTo({ top: scrollPos, behavior: "smooth" });
+    }
+  }, [scrollPos]);
+
   return (
-    <div className="overview">
+    <div className="overview" ref={containerRef}>
       {scans
         .sort((a, b) => (a.date < b.date ? 1 : -1))
         .reduce<ScanProps[]>((pageScans, scan) => {
@@ -23,18 +45,20 @@ const Overview = ({
             : pageScans;
         }, [])
         .sort((a, b) => (a.pages[0] > b.pages[0] ? 1 : -1))
-        .map((scan) => (
-          <img
-            key={`thumb-${scan.uid}`}
-            className={
-              scan.pages[0] === currentScan?.pages[0] ? "thumb-active" : ""
-            }
-            onClick={() => {
-              onScanSelect(scan.pages[0]);
-            }}
-            src={scan.thumbPath}
-          />
-        ))}
+        .map((scan) => {
+          const active = scan.pages[0] === currentScan?.pages[0];
+          return (
+            <img
+              key={`thumb-${scan.uid}`}
+              className={active ? "thumb-active" : ""}
+              ref={active ? imgRef : null}
+              onClick={() => {
+                onScanSelect(scan.pages[0]);
+              }}
+              src={scan.thumbPath}
+            />
+          );
+        })}
     </div>
   );
 };

@@ -42,32 +42,35 @@
 }
 
 .scan-nav-group {
-  .scan-nav {
-    align-items: center;
-    display: grid;
-    grid-auto-flow: column;
-    grid-column-gap: 1rem;
+  .scan-nav-transition {
     height: 100%;
-    overflow-x: auto;
-    width: 100%;
-    .scan-thumbnail {
+    .scan-nav {
       align-items: center;
-      background-color: none;
-      cursor: pointer;
-      justify-self: center;
-      max-height: 100%;
-      max-width: 100%;
-      min-width: 80px;
-      opacity: 0.75;
-      padding-bottom: 0;
-      padding-top: 1rem;
-      position: relative;
-      transition: all $transition-time ease-out;
-      &-active {
-        background-color: $water;
-        opacity: 1;
-        padding-bottom: 1rem;
-        padding-top: 0;
+      display: grid;
+      grid-auto-flow: column;
+      grid-column-gap: 1rem;
+      height: 100%;
+      overflow-x: auto;
+      width: 100%;
+      .scan-thumbnail {
+        align-items: center;
+        background-color: none;
+        cursor: pointer;
+        justify-self: center;
+        max-height: 100%;
+        max-width: 100%;
+        min-width: 80px;
+        opacity: 0.75;
+        padding-bottom: 0;
+        padding-top: 1rem;
+        position: relative;
+        transition: all $transition-time ease-out;
+        &-active {
+          background-color: $water;
+          opacity: 1;
+          padding-bottom: 1rem;
+          padding-top: 0;
+        }
       }
     }
   }

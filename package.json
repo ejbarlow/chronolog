@@ -27,6 +27,7 @@
     "eslint-plugin-react": "^7.21.5",
     "eslint-plugin-react-hooks": "^1.7.0",
     "fast-average-color": "^7.0.1",
+    "lodash": "^4.17.21",
     "node-sass": "^5.0.",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
@@ -59,6 +60,7 @@
   },
   "type": "module",
   "devDependencies": {
+    "@types/lodash": "^4.14.177",
     "reinspect": "^1.1.0"
   }
 }
