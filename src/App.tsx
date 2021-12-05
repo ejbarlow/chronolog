@@ -1,4 +1,5 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect } from "react";
+import { useState, useReducer } from "reinspect";
 import * as Action from "./actions/Actions";
 import AppReducer from "./reducers/AppReducer";
 import AppState from "./types/AppState";
@@ -24,12 +25,18 @@ const initialState: AppState = {
 };
 
 function App(): React.ReactElement {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
-  const [showOverview, setShowOverview] = useState(false);
-  const [currentScan, setCurrentScan] = useState<ScanProps | undefined>(
-    undefined
+  const [state, dispatch] = useReducer(
+    AppReducer,
+    initialState,
+    (state) => state,
+    "Chronolog"
   );
-  const [background, setBackground] = useState("#F0F0E9");
+  const [showOverview, setShowOverview] = useState(false, "showOverview");
+  const [currentScan, setCurrentScan] = useState<ScanProps | undefined>(
+    undefined,
+    "currentScan"
+  );
+  const [background, setBackground] = useState("#F0F0E9", "background");
   const findScan = () => {
     const filteredScans = state.scans.filter(
       (scan) => scan.pages.includes(state.page) && scan.volume === state.volume

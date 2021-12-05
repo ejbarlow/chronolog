@@ -57,5 +57,8 @@
       "last 1 safari version"
     ]
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "reinspect": "^1.1.0"
+  }
 }
