@@ -38,7 +38,7 @@ const ScanView = ({
           key={currentScan.uid}
           appear={true}
           nodeRef={scanViewNode}
-          timeout={200}
+          timeout={100}
           classNames="scan-transition"
         >
           <ScanImage scan={currentScan} ref={scanViewNode} />

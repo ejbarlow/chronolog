@@ -56,6 +56,21 @@ function App(): React.ReactElement {
   };
 
   useEffect(() => {
+    document.addEventListener("keydown", (e) => {
+      switch (e.code) {
+        case "ArrowLeft":
+          dispatch(Action.PAGE_SUB());
+          break;
+        case "ArrowRight":
+          dispatch(Action.PAGE_ADD());
+          break;
+        default:
+          break;
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     importScanData(state.manifestPath).then((scanData) => {
       dispatch(Action.SCANS_SRC(scanData));
     });
@@ -141,14 +156,14 @@ function App(): React.ReactElement {
           ))}
         </div>
         <div className="thumb-nav-container">
-          <a
+          <button
             className={`thumb-nav${showOverview ? " thumb-nav--active" : ""}`}
             onClick={() => {
               setShowOverview(!showOverview);
             }}
           >
             <FontAwesomeIcon icon={faChessBoard} />
-          </a>
+          </button>
         </div>
       </nav>
     </div>

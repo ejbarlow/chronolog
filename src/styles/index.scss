@@ -82,7 +82,8 @@ html, body {
         color: $comfy;
         cursor: pointer;
         flex: 1;
-        height: $btnHeight;
+        font-size: $font-size;
+        padding: $ui-padding;
         &.vol--active {
           background-color: $dusty;
           color: $cararra;

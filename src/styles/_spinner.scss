@@ -1,7 +1,6 @@
 .spinner {
   @include uiShadow;
   display: flex;
-  height: $btnHeight;
   width: 100%;
   form, button {
     flex: 1;
@@ -13,10 +12,10 @@
       border-radius: 0;
       box-sizing: border-box;
       color: #fff;
-      font-size: 1.5rem;
+      font-size: $font-size;
       height: 100%;
       text-align: center;
-      padding: 0;
+      padding: $ui-padding;
       width: 100%;
       &:focus {
         outline: none;
