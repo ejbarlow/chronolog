@@ -58,6 +58,11 @@ $dusty: #A39393;
   }
 }
 
+.scan-view--static {
+  .scan-image {
+    transform: translate(-50%, -50%);
+  }
+}
 .scan-view--right {
   .scan-transition {
     &-appear,

@@ -21,7 +21,9 @@ const ScanView = ({
   const [displayPage, setDisplayPage] = useState(page);
   const scanViewNode = createRef<HTMLImageElement>();
   useEffect(() => {
-    setScanDir(`scan-view--${page > displayPage ? "left" : "right"}`);
+    const transitionDir =
+      page > displayPage ? "left" : page < displayPage ? "right" : "static";
+    setScanDir(`scan-view--${transitionDir}`);
     setDisplayPage(page);
     if (styleCallback && currentScan) {
       fac.getColorAsync(currentScan.path).then((color) => {

@@ -65,7 +65,7 @@ function App(): React.ReactElement {
     if (state.scans.length) {
       findScan();
     }
-  }, [state.date, state.scans, state.page]);
+  }, [state.date, state.scans, state.page, state.volume]);
 
   return (
     <div className="chronolog" style={{ backgroundColor: background }}>
