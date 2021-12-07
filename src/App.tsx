@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useState, useReducer } from "reinspect";
 import * as Action from "./actions/Actions";
 import AppReducer from "./reducers/AppReducer";
@@ -55,19 +55,22 @@ function App(): React.ReactElement {
     );
   };
 
+  const keyHandler = useCallback((e) => {
+    if (document.activeElement?.tagName.toUpperCase() === "INPUT") return;
+    switch (e.code) {
+      case "ArrowLeft":
+        dispatch(Action.PAGE_SUB());
+        break;
+      case "ArrowRight":
+        dispatch(Action.PAGE_ADD());
+        break;
+      default:
+        break;
+    }
+  }, [document.activeElement]);
+
   useEffect(() => {
-    document.addEventListener("keydown", (e) => {
-      switch (e.code) {
-        case "ArrowLeft":
-          dispatch(Action.PAGE_SUB());
-          break;
-        case "ArrowRight":
-          dispatch(Action.PAGE_ADD());
-          break;
-        default:
-          break;
-      }
-    });
+    document.addEventListener("keydown", keyHandler);
   }, []);
 
   useEffect(() => {
@@ -125,6 +128,10 @@ function App(): React.ReactElement {
           <Spinner
             className="page-nav"
             value={state.page}
+            labels={{
+              decrease: "Previous page",
+              increase: "Next page",
+            }}
             onIncrease={() => {
               dispatch(Action.PAGE_ADD());
             }}
@@ -157,6 +164,7 @@ function App(): React.ReactElement {
         </div>
         <div className="thumb-nav-container">
           <button
+            aria-label="Toggle overview"
             className={`thumb-nav${showOverview ? " thumb-nav--active" : ""}`}
             onClick={() => {
               setShowOverview(!showOverview);

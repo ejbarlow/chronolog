@@ -5,6 +5,10 @@ import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 type SpinnerProps = {
   className: string | undefined;
   value: number;
+  labels: {
+    decrease: string;
+    increase: string;
+  };
   onIncrease: () => void;
   onDecrease: () => void;
   onSet: (pageNum: number) => void;
@@ -13,13 +17,14 @@ type SpinnerProps = {
 const Spinner: FC<SpinnerProps> = ({
   className,
   value,
+  labels,
   onIncrease,
   onDecrease,
   onSet,
 }) => {
   return (
     <div className={`${className} spinner`}>
-      <button onClick={onDecrease}>
+      <button aria-label={labels.decrease} onClick={onDecrease}>
         <FontAwesomeIcon icon={faCaretLeft} />
       </button>
       <form style={{}}>
@@ -31,7 +36,7 @@ const Spinner: FC<SpinnerProps> = ({
           }}
         />
       </form>
-      <button onClick={onIncrease}>
+      <button aria-label={labels.increase} onClick={onIncrease}>
         <FontAwesomeIcon icon={faCaretRight} />
       </button>
     </div>

@@ -52,6 +52,7 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
                 <img
                   key={`${scan.uid}_thumb`}
                   ref={active ? imgRef : null}
+                  aria-label={`Scan thumbnail - page${scan.pages.length === 1 ? ` ${scan.pages[0]}` : `s ${scan.pages.join(' & ')}`}`}
                   className={`scan-thumbnail${
                     active ? " scan-thumbnail-active" : ""
                   }`}
