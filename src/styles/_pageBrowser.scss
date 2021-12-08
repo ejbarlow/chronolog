@@ -52,26 +52,28 @@
       height: 100%;
       overflow-x: auto;
       width: 100%;
-      .scan-thumbnail {
-        align-items: center;
-        background-color: none;
-        cursor: pointer;
-        justify-self: center;
-        max-height: 100%;
-        max-width: 100%;
-        min-width: 80px;
-        opacity: 0.75;
-        padding-bottom: 0;
-        padding-top: 1rem;
+      button {
         position: relative;
-        transition: all $transition-time ease-out;
-        user-select: none;
-        &-active {
-          background-color: $water;
-          opacity: 1;
-          padding-bottom: 1rem;
-          padding-top: 0;
-        }
+        .scan-thumbnail {
+          align-items: center;
+          background-color: none;
+          cursor: pointer;
+          justify-self: center;
+          max-height: 100%;
+          max-width: 100%;
+          min-width: 80px;
+          opacity: 0.75;
+          border-bottom: 0 solid $water;
+          border-top: 1rem solid transparent;
+          position: relative;
+          transition: all $transition-time ease-out;
+          user-select: none;
+          &-active {
+            opacity: 1;
+            border-bottom: 1rem solid $water;
+            border-top: 0 solid transparent;
+          }
+        } 
       }
     }
   }

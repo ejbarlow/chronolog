@@ -12,15 +12,15 @@ const Overview = ({
   currentScan,
   onScanSelect,
 }: OverviewProps): React.ReactElement => {
-  const imgRef = createRef<HTMLImageElement>();
+  const btnRef = createRef<HTMLButtonElement>();
   const containerRef = createRef<HTMLDivElement>();
   const [scrollPos, setScrollPos] = useState(0);
 
   useEffect(() => {
     setTimeout(() => {
-      if (containerRef.current && imgRef.current) {
+      if (containerRef.current && btnRef.current) {
         setScrollPos(
-          imgRef.current.getBoundingClientRect().top -
+          btnRef.current.getBoundingClientRect().top -
             containerRef.current.getBoundingClientRect().top
         );
       }
@@ -48,16 +48,21 @@ const Overview = ({
         .map((scan) => {
           const active = scan.pages[0] === currentScan?.pages[0];
           return (
-            <img
+            <button
               key={`thumb-${scan.uid}`}
               className={active ? "thumb-active" : ""}
-              ref={active ? imgRef : null}
-              aria-label={`Scan thumbnail - page${scan.pages.length === 1 ? ` ${scan.pages[0]}` : `s ${scan.pages.join(' & ')}`}`}
+              ref={active ? btnRef : null}
+              aria-label={`Scan thumbnail - page${
+                scan.pages.length === 1
+                  ? ` ${scan.pages[0]}`
+                  : `s ${scan.pages.join(" & ")}`
+              }`}
               onClick={() => {
                 onScanSelect(scan.pages[0]);
               }}
-              src={scan.thumbPath}
-            />
+            >
+              <img src={scan.thumbPath} />
+            </button>
           );
         })}
     </div>

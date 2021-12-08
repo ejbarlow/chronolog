@@ -44,30 +44,48 @@ function App(): React.ReactElement {
     if (filteredScans.length < 1) {
       return undefined;
     }
-    setCurrentScan(
-      filteredScans.reduce((closest, curr) => {
-        return Math.abs(curr.date.getTime() - state.date.getTime()) <
-          Math.abs(closest.date.getTime() - state.date.getTime()) &&
-          curr.pages.includes(state.page)
-          ? curr
-          : closest;
-      })
-    );
+    const newScan = filteredScans.reduce((closest, curr) => {
+      return Math.abs(curr.date.getTime() - state.date.getTime()) <
+        Math.abs(closest.date.getTime() - state.date.getTime()) &&
+        curr.pages.includes(state.page)
+        ? curr
+        : closest;
+    });
+    setCurrentScan(newScan);
   };
 
-  const keyHandler = useCallback((e) => {
-    if (document.activeElement?.tagName.toUpperCase() === "INPUT") return;
-    switch (e.code) {
-      case "ArrowLeft":
-        dispatch(Action.PAGE_SUB());
-        break;
-      case "ArrowRight":
-        dispatch(Action.PAGE_ADD());
-        break;
-      default:
-        break;
-    }
-  }, [document.activeElement]);
+  const keyHandler = useCallback(
+    (e) => {
+      if (document.activeElement?.tagName.toUpperCase() === "INPUT") return;
+      switch (e.code) {
+        case "ArrowLeft":
+          dispatch(Action.PAGE_SUB());
+          break;
+        case "ArrowRight":
+          dispatch(Action.PAGE_ADD());
+          break;
+        case "ArrowUp":
+        case "ArrowDown":
+          if (!currentScan) return state.date;
+          const currentScans = state.scans.filter(
+            (scan) =>
+              scan.volume === state.volume && scan.pages.includes(state.page)
+          );
+          const nextIndex = Math.min(
+            Math.max(
+              e.code === "ArrowDown"
+                ? currentScans.indexOf(currentScan) - 1
+                : currentScans.indexOf(currentScan) + 1,
+              0
+            ),
+            currentScans.length - 1
+          );
+          dispatch(Action.DATE_SET(currentScans[nextIndex].date));
+          break;
+      }
+    },
+    [document.activeElement, currentScan]
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", keyHandler);

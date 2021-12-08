@@ -7,15 +7,18 @@
   align-items: center;
   justify-content: center;
   overflow-y: auto;
-  img {
-    cursor: pointer;
+  width: 100%;
+  button {
+    width: 20%;
     margin: 2%;
     max-width: 80px;
-    user-select: none;
-    width: 20%;
-    &.thumb-active {
-      border-bottom: 1rem solid $water;
-      border-top: 1rem solid $comfy;
+    img {
+      cursor: pointer;
+      user-select: none;
+      &.thumb-active {
+        border-bottom: 1rem solid $water;
+        border-top: 1rem solid $comfy;
+      }
     }
   }
 }
