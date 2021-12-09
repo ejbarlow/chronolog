@@ -46,13 +46,13 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
         <div ref={containerRef} className="scan-nav">
           {scans
             .sort((a, b) => (a.date > b.date ? 1 : -1))
-            .map((scan) => {
+            .map((scan, i) => {
               const active = currentScan?.uid === scan.uid;
               return (
                 <button
                   key={`${scan.uid}_thumb`}
                   ref={active ? btnRef : null}
-                  aria-label={`Scan thumbnail - page${
+                  aria-label={`Scan ${i + 1} of ${scans.length}, page${
                     scan.pages.length === 1
                       ? ` ${scan.pages[0]}`
                       : `s ${scan.pages.join(" & ")}`

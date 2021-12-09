@@ -52,7 +52,7 @@ const Overview = ({
               key={`thumb-${scan.uid}`}
               className={active ? "thumb-active" : ""}
               ref={active ? btnRef : null}
-              aria-label={`Scan thumbnail - page${
+              aria-label={`Select page${
                 scan.pages.length === 1
                   ? ` ${scan.pages[0]}`
                   : `s ${scan.pages.join(" & ")}`

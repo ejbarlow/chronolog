@@ -9,6 +9,14 @@ export const PAGE_SUB = (): ActionType => ({
   type: Action.PAGE_SUB,
 });
 
+export const DATE_ADD = (): ActionType => ({
+  type: Action.DATE_ADD,
+});
+
+export const DATE_SUB = (): ActionType => ({
+  type: Action.DATE_SUB,
+});
+
 export const DATE_SET = (date: Date): ActionType => ({
   type: Action.DATE_SET,
   payload: date,

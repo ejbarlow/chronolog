@@ -7,7 +7,18 @@ type ScanImageProps = {
 
 const ScanImage = React.forwardRef<HTMLImageElement, ScanImageProps>(
   ({ scan }: ScanImageProps, ref): React.ReactElement => {
-    return <img ref={ref} aria-label={`Scan image - page${scan.pages.length === 1 ? ` ${scan.pages[0]}` : `s ${scan.pages.join(' & ')}`}`} className="scan-image" src={scan.path.toString()} />;
+    return (
+      <img
+        ref={ref}
+        aria-label={`Scan image, page${
+          scan.pages.length === 1
+            ? ` ${scan.pages[0]}`
+            : `s ${scan.pages.join(" & ")}`
+        }`}
+        className="scan-image"
+        src={scan.path.toString()}
+      />
+    );
   }
 );
 

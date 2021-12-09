@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState, useReducer } from "reinspect";
 import * as Action from "./actions/Actions";
 import AppReducer from "./reducers/AppReducer";
@@ -12,7 +12,6 @@ import { faChessBoard } from "@fortawesome/free-solid-svg-icons";
 
 import "normalize.css";
 import "./styles/index.scss";
-import ScanProps from "./types/ScanProps";
 import Overview from "./components/Overview";
 
 const initialState: AppState = {
@@ -31,77 +30,50 @@ function App(): React.ReactElement {
     (state) => state,
     "Chronolog"
   );
-  const [showOverview, setShowOverview] = useState(false, "showOverview");
-  const [currentScan, setCurrentScan] = useState<ScanProps | undefined>(
-    undefined,
-    "currentScan"
-  );
-  const [background, setBackground] = useState("#F0F0E9", "background");
-  const findScan = () => {
-    const filteredScans = state.scans.filter(
-      (scan) => scan.pages.includes(state.page) && scan.volume === state.volume
-    );
-    if (filteredScans.length < 1) {
-      return undefined;
-    }
-    const newScan = filteredScans.reduce((closest, curr) => {
-      return Math.abs(curr.date.getTime() - state.date.getTime()) <
-        Math.abs(closest.date.getTime() - state.date.getTime()) &&
-        curr.pages.includes(state.page)
-        ? curr
-        : closest;
-    });
-    setCurrentScan(newScan);
-  };
 
-  const keyHandler = useCallback(
-    (e) => {
-      if (document.activeElement?.tagName.toUpperCase() === "INPUT") return;
-      switch (e.code) {
-        case "ArrowLeft":
-          dispatch(Action.PAGE_SUB());
-          break;
-        case "ArrowRight":
-          dispatch(Action.PAGE_ADD());
-          break;
-        case "ArrowUp":
-        case "ArrowDown":
-          if (!currentScan) return state.date;
-          const currentScans = state.scans.filter(
-            (scan) =>
-              scan.volume === state.volume && scan.pages.includes(state.page)
-          );
-          const nextIndex = Math.min(
-            Math.max(
-              e.code === "ArrowDown"
-                ? currentScans.indexOf(currentScan) - 1
-                : currentScans.indexOf(currentScan) + 1,
-              0
-            ),
-            currentScans.length - 1
-          );
-          dispatch(Action.DATE_SET(currentScans[nextIndex].date));
-          break;
-      }
-    },
-    [document.activeElement, currentScan]
-  );
+  const [showOverview, setShowOverview] = useState(false, "showOverview");
+  const [background, setBackground] = useState("#F0F0E9", "background");
+  const overviewToggleRef = useRef(showOverview);
+
+  const keyHandler = (e: KeyboardEvent) => {
+    if (document.activeElement?.tagName.toUpperCase() === "INPUT") return;
+    switch (e.code) {
+      case "ArrowLeft":
+        dispatch(Action.PAGE_SUB());
+        break;
+      case "ArrowRight":
+        dispatch(Action.PAGE_ADD());
+        break;
+      case "ArrowUp":
+        dispatch(Action.DATE_ADD());
+        break;
+      case "ArrowDown":
+        dispatch(Action.DATE_SUB());
+        break;
+      case "KeyO":
+        setShowOverview(!overviewToggleRef.current);
+        break;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     document.addEventListener("keydown", keyHandler);
+    return () => {
+      document.removeEventListener("keydown", keyHandler);
+    };
   }, []);
+
+  useEffect(() => {
+    overviewToggleRef.current = showOverview;
+  }, [showOverview]);
 
   useEffect(() => {
     importScanData(state.manifestPath).then((scanData) => {
       dispatch(Action.SCANS_SRC(scanData));
     });
   }, [state.manifestPath]);
-
-  useEffect(() => {
-    if (state.scans.length) {
-      findScan();
-    }
-  }, [state.date, state.scans, state.page, state.volume]);
 
   return (
     <div className="chronolog" style={{ backgroundColor: background }}>
@@ -113,7 +85,7 @@ function App(): React.ReactElement {
           (showOverview ? (
             <Overview
               scans={state.scans.filter((scan) => scan.volume === state.volume)}
-              currentScan={currentScan}
+              currentScan={state.currentScan}
               onScanSelect={(p) => {
                 dispatch(Action.PAGE_SET(p));
                 setShowOverview(false);
@@ -122,7 +94,7 @@ function App(): React.ReactElement {
           ) : (
             <>
               <ScanView
-                currentScan={currentScan}
+                currentScan={state.currentScan}
                 page={state.page}
                 styleCallback={setBackground}
               />
@@ -136,7 +108,7 @@ function App(): React.ReactElement {
                 onScanSelect={(d) => {
                   dispatch(Action.DATE_SET(d));
                 }}
-                currentScan={currentScan}
+                currentScan={state.currentScan}
               />
             </>
           ))}
@@ -168,8 +140,9 @@ function App(): React.ReactElement {
                 return [...volumes, scan.volume];
               }, [])
             )
-          ).map((vol) => (
+          ).map((vol, i) => (
             <button
+              aria-label={`Volume ${i + 1}`}
               className={vol === state.volume ? "vol--active" : ""}
               key={`btn-vol-${vol}`}
               onClick={() => {

@@ -12,13 +12,13 @@
     width: 20%;
     margin: 2%;
     max-width: 80px;
+    &.thumb-active {
+      border-bottom: 1rem solid $water;
+      border-top: 1rem solid $comfy;
+    }
     img {
       cursor: pointer;
       user-select: none;
-      &.thumb-active {
-        border-bottom: 1rem solid $water;
-        border-top: 1rem solid $comfy;
-      }
     }
   }
 }

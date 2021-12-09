@@ -2,6 +2,7 @@ import ScanProps from "./ScanProps";
 
 type AppState = {
   scans: ScanProps[];
+  currentScan?: ScanProps;
   manifestPath: string;
   volume: number;
   highestPage: number;
