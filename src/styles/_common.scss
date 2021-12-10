@@ -12,6 +12,12 @@ $cararra: #F0F0E9;
 $comfy: #F0D1D1;
 $dusty: #A39393;
 
+$background: $delta;
+$accent: $water;
+$neutral: $cararra;
+$accent--highlight: $comfy;
+$background--active: $dusty;
+
 @mixin uiShadow {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }

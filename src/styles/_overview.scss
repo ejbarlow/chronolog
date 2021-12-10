@@ -13,8 +13,8 @@
     margin: 2%;
     max-width: 80px;
     &.thumb-active {
-      border-bottom: 1rem solid $water;
-      border-top: 1rem solid $comfy;
+      border-bottom: 1rem solid $accent;
+      border-top: 1rem solid $accent--highlight;
     }
     img {
       cursor: pointer;

@@ -19,17 +19,17 @@
 
 .thumb-nav-container {
   @include uiShadow;
-  background-color: $water;
+  background-color: $accent;
   .thumb-nav {
     display: flex;
     width: 33%;
-    background-color: $comfy;
+    background-color: $accent--highlight;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
     border: none;
     padding: $ui-padding;
-    color: $cararra;
+    color: $neutral;
     cursor: pointer;
     font-size: 2rem;
     cursor: pointer;
@@ -63,14 +63,14 @@
           max-width: 100%;
           min-width: 80px;
           opacity: 0.75;
-          border-bottom: 0 solid $water;
+          border-bottom: 0 solid $accent;
           border-top: 1rem solid transparent;
           position: relative;
           transition: all $transition-time ease-out;
           user-select: none;
           &-active {
             opacity: 1;
-            border-bottom: 1rem solid $water;
+            border-bottom: 1rem solid $accent;
             border-top: 0 solid transparent;
           }
         } 

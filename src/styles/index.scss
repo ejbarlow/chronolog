@@ -13,11 +13,11 @@
 }
 
 *::-webkit-scrollbar-track {
-  background-color: $water;
+  background-color: $accent;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: $comfy;
+  background-color: $accent--highlight;
   cursor: pointer;
 }
 
@@ -37,14 +37,14 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   h1 {
-    background-color: $comfy;
-    color: $cararra;
+    background-color: $accent--highlight;
+    color: $neutral;
     font-weight: 100;
     font-size: 2rem;
     margin: 0;
   }
   #root {
-    background-color: $cararra;
+    background-color: $neutral;
   }
 }
 
@@ -57,7 +57,7 @@ html, body {
   text-align: center;
   transition: background-color 0.2s;
   .app-header {
-    background-color: $water;
+    background-color: $accent;
     display: flex;
     align-items: center;
     margin: 0 auto;
@@ -84,16 +84,16 @@ html, body {
       display: flex;
       width: 100%;
       button {
-        background-color: $delta;
+        background-color: $background;
         border: none;
-        color: $comfy;
+        color: $accent--highlight;
         cursor: pointer;
         flex: 1;
         font-size: $font-size;
         padding: $ui-padding;
         &.vol--active {
-          background-color: $dusty;
-          color: $cararra;
+          background-color: $background--active;
+          color: $neutral;
         }
       }
     }
