@@ -50,7 +50,7 @@ const Overview = ({
           return (
             <button
               key={`thumb-${scan.uid}`}
-              className={active ? "thumb-active" : ""}
+              className={active ? "active" : ""}
               ref={active ? btnRef : null}
               aria-label={`Select page${
                 scan.pages.length === 1

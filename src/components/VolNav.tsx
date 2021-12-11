@@ -22,7 +22,7 @@ const VolNav = ({
     ).map((vol, i) => (
       <button
         aria-label={`Volume ${i + 1}`}
-        className={vol === currentVolume ? "vol--active" : ""}
+        className={vol === currentVolume ? "active" : ""}
         key={`btn-vol-${vol}`}
         onClick={() => volSetCallback(vol)}
       >

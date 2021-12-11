@@ -77,12 +77,16 @@ function App(): React.ReactElement {
     });
   }, [state.manifestPath]);
 
+  useEffect(() => {
+    document.body.style.backgroundColor = background;
+  }, [background]);
+
   return (
-    <div className="chronolog" style={{ backgroundColor: background }}>
-      <header className="app-header">
+    <>
+      <header>
         <h1>Chronolog</h1>
       </header>
-      <main className="app-main">
+      <main>
         {state.scans.length &&
           (showOverview ? (
             <Overview
@@ -115,10 +119,9 @@ function App(): React.ReactElement {
             </>
           ))}
       </main>
-      <nav className="app-nav">
+      <nav>
         {!showOverview && (
           <Spinner
-            className="page-nav"
             value={state.page}
             labels={{
               decrease: "Previous page",
@@ -148,12 +151,11 @@ function App(): React.ReactElement {
             setShowOverview(val);
           }}
           label="Toggle overview"
-          className="toggle-overview"
         >
           <FontAwesomeIcon icon={faChessBoard} />
         </Toggle>
       </nav>
-    </div>
+    </>
   );
 }
 

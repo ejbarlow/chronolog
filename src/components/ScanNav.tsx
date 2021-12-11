@@ -42,8 +42,8 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
     }, [scrollPos]);
 
     return (
-      <div ref={ref} className="scan-nav-transition">
-        <div ref={containerRef} className="scan-nav">
+      <div ref={ref}>
+        <div ref={containerRef} className="scan-nav-inner">
           {scans
             .sort((a, b) => (a.date > b.date ? 1 : -1))
             .map((scan, i) => {
@@ -62,9 +62,7 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
                   }}
                 >
                   <img
-                    className={`scan-thumbnail${
-                      active ? " scan-thumbnail-active" : ""
-                    }`}
+                    className={active ? "active" : ""}
                     src={scan.thumbPath}
                   />
                 </button>

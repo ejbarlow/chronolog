@@ -13,20 +13,25 @@ const Toggle: React.FC<ToggleProps> = ({
   label,
   className,
   children,
-}) => (
-  <>
-    <div className={`${className}-container`}>
-      <button
-        aria-label={label}
-        className={`${className}${value ? ` ${className}--active` : ""}`}
-        onClick={() => {
-          setter(!value);
-        }}
-      >
-        {children}
-      </button>
-    </div>
-  </>
-);
+}) => {
+  const classes = ["toggle"];
+  if (value) classes.push("active");
+  if (className) classes.push(className);
+  return (
+    <>
+      <div className={classes.join(" ")}>
+        <button
+          aria-label={label}
+          className="toggle-inner"
+          onClick={() => {
+            setter(!value);
+          }}
+        >
+          {children}
+        </button>
+      </div>
+    </>
+  );
+};
 
 export { Toggle as default };

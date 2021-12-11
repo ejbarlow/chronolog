@@ -17,7 +17,7 @@ const PageNav = ({
 }: PageNavProps): React.ReactElement => {
   const scanNavNode = createRef<HTMLDivElement>();
   return (
-    <TransitionGroup className="scan-nav-group">
+    <TransitionGroup className="scan-nav">
       {scans.length && (
         <CSSTransition
           key={scans[0].uid || "0"}

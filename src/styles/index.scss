@@ -1,102 +1,49 @@
 @import "./common";
-@import "./pageBrowser";
-@import "./spinner";
-@import "./overview";
 
-* {
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-*::-webkit-scrollbar {
-  width: 1rem;
-}
-
-*::-webkit-scrollbar-track {
-  background-color: $accent;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: $accent--highlight;
-  cursor: pointer;
-}
+@import "./components/scanView";
+@import "./components/scanNav";
+@import "./components/spinner";
+@import "./components/volNav";
+@import "./components/toggle";
+@import "./components/overview";
 
 button {
   background: none;
   border: none;
-  padding: 0;
-  margin: 0;
-}
-
-html, body {
-  height: 100%;
   margin: 0;
   padding: 0;
-  width: 100%;
-  font-family: Georgia, Times, Times New Roman, serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  h1 {
-    background-color: $accent--highlight;
-    color: $neutral;
-    font-weight: 100;
-    font-size: 2rem;
-    margin: 0;
-  }
-  #root {
-    background-color: $neutral;
-  }
 }
 
-.chronolog {
+#chronolog {
   display: grid;
-  height: 100%;
-  width: 100%;
   grid-template-rows: 5rem 1fr auto;
+  height: 100%;
   position: fixed;
   text-align: center;
   transition: background-color 0.2s;
-  .app-header {
-    background-color: $accent;
-    display: flex;
+  width: 100%;
+  header {
     align-items: center;
+    background-color: $accent;
+    color: white;
+    display: flex;
+    font-size: calc(6px + 1vmin);
     margin: 0 auto;
     padding-left: $margin;
     text-align: center;
-    font-size: calc(6px + 1vmin);
-    color: white;
     width: 100%;
-  }
-  .app-main {
-    display: grid;
-    grid-template-rows: 3fr 1fr;
-    grid-gap: 1rem;
   }
   main {
     box-sizing: border-box;
+    box-sizing: border-box;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-rows: 3fr 1fr;
+    max-height: 100%;
     padding: $margin;
   }
   nav {
     display: flex;
     flex-direction: column;
-    .vol-nav {
-      @include uiShadow;
-      display: flex;
-      width: 100%;
-      button {
-        background-color: $background;
-        border: none;
-        color: $accent--highlight;
-        cursor: pointer;
-        flex: 1;
-        font-size: $font-size;
-        padding: $ui-padding;
-        &.vol--active {
-          background-color: $background--active;
-          color: $neutral;
-        }
-      }
-    }
   }
 }
-

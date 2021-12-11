@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 type SpinnerProps = {
-  className: string | undefined;
   value: number;
   labels: {
     decrease: string;
@@ -15,7 +14,6 @@ type SpinnerProps = {
 };
 
 const Spinner: FC<SpinnerProps> = ({
-  className,
   value,
   labels,
   onIncrease,
@@ -23,7 +21,7 @@ const Spinner: FC<SpinnerProps> = ({
   onSet,
 }) => {
   return (
-    <div className={`${className} spinner`}>
+    <div className="spinner">
       <button aria-label={labels.decrease} onClick={onDecrease}>
         <FontAwesomeIcon icon={faCaretLeft} />
       </button>

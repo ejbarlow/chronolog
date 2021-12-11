@@ -15,7 +15,6 @@ const ScanImage = React.forwardRef<HTMLImageElement, ScanImageProps>(
             ? ` ${scan.pages[0]}`
             : `s ${scan.pages.join(" & ")}`
         }`}
-        className="scan-image"
         src={scan.path.toString()}
       />
     );

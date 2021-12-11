@@ -1,0 +1,23 @@
+.toggle {
+  @include uiShadow;
+  background-color: $accent;
+  .toggle-inner {
+    align-items: center;
+    background-color: $accent--highlight;
+    border: none;
+    color: $neutral;
+    cursor: pointer;
+    cursor: pointer;
+    display: flex;
+    font-size: 2rem;
+    justify-content: center;
+    margin: 0 auto;
+    padding: $ui-padding;
+    transition: width 0.2s;
+    user-select: none;
+    width: 33%;
+  }
+  &.active .toggle-inner {
+      width: 100%;
+  }
+}
