@@ -6,14 +6,17 @@ $ui-padding: 0.5rem 0;
 $transition-time: 0.1s;
 $transition-dist: 5%;
 
-$delta: #AFAFAE;
-$water: #D1E3F0;
-$cararra: #F0F0E9;
-$comfy: #F0D1D1;
-$dusty: #A39393;
+$delta: hsl(60, 1%, 68%);
+$water: hsl(205, 51%, 88%);
+$cararra: hsl(60, 19%, 93%);
+$comfy: hsl(0, 51%, 88%);
+$dusty: hsl(0, 8%, 61%);
 
-$background: $delta;
-$accent: $water;
-$neutral: $cararra;
-$accent--highlight: $comfy;
-$background--active: $dusty;
+$d: 22.5%;
+$l: 10%;
+
+$background: darken($delta, $d);
+$accent: darken($water, $d);
+$neutral: lighten($cararra, $d);
+$accent--highlight: darken($comfy, $d);
+$background--active: darken($comfy, $d);
