@@ -17,10 +17,10 @@
   }
 }
 
-.thumb-nav-container {
+.toggle-overview-container {
   @include uiShadow;
   background-color: $accent;
-  .thumb-nav {
+  .toggle-overview {
     display: flex;
     width: 33%;
     background-color: $accent--highlight;

@@ -7,12 +7,14 @@ import importScanData from "./utils/importScanData";
 import Spinner from "./components/Spinner";
 import PageNav from "./components/PageNav";
 import ScanView from "./components/ScanView";
+import VolNav from "./components/VolNav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChessBoard } from "@fortawesome/free-solid-svg-icons";
 
 import "normalize.css";
 import "./styles/index.scss";
 import Overview from "./components/Overview";
+import Toggle from "./components/Toggle";
 
 const initialState: AppState = {
   scans: [],
@@ -133,37 +135,23 @@ function App(): React.ReactElement {
             }}
           />
         )}
-        <div className="vol-nav">
-          {Array.from(
-            new Set(
-              state.scans.reduce((volumes: number[], scan) => {
-                return [...volumes, scan.volume];
-              }, [])
-            )
-          ).map((vol, i) => (
-            <button
-              aria-label={`Volume ${i + 1}`}
-              className={vol === state.volume ? "vol--active" : ""}
-              key={`btn-vol-${vol}`}
-              onClick={() => {
-                dispatch(Action.VOL_SET(vol));
-              }}
-            >
-              {vol}
-            </button>
-          ))}
-        </div>
-        <div className="thumb-nav-container">
-          <button
-            aria-label="Toggle overview"
-            className={`thumb-nav${showOverview ? " thumb-nav--active" : ""}`}
-            onClick={() => {
-              setShowOverview(!showOverview);
-            }}
-          >
-            <FontAwesomeIcon icon={faChessBoard} />
-          </button>
-        </div>
+        <VolNav
+          scans={state.scans}
+          currentVolume={state.volume}
+          volSetCallback={(vol) => {
+            dispatch(Action.VOL_SET(vol));
+          }}
+        />
+        <Toggle
+          value={showOverview}
+          setter={(val) => {
+            setShowOverview(val);
+          }}
+          label="Toggle overview"
+          className="toggle-overview"
+        >
+          <FontAwesomeIcon icon={faChessBoard} />
+        </Toggle>
       </nav>
     </div>
   );
