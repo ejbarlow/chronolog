@@ -20,3 +20,8 @@
     user-select: none;
   }
 }
+
+.high-contrast .scan-view img {
+  border: 0.5rem solid var(--accent);
+  border-radius: 0.5rem;
+}

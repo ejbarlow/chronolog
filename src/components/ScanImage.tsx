@@ -5,6 +5,12 @@ type ScanImageProps = {
   scan: ScanProps;
 };
 
+/**
+ * <ScanImage>
+ *
+ * Takes a scan and HTMLImageElement ref (used for transitions) and returns
+ * the image element for display.
+ */
 const ScanImage = React.forwardRef<HTMLImageElement, ScanImageProps>(
   ({ scan }: ScanImageProps, ref): React.ReactElement => {
     return (

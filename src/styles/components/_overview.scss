@@ -13,17 +13,30 @@
   overflow-y: auto;
   width: 100%;
   button {
-    margin: 2%;
-    max-width: 80px;
-    width: 20%;
+    margin: 1%;
     &.active {
-      border-bottom: 1rem solid var(--accent);
-      border-top: 1rem solid var(--accent--highlight);
+      img{
+        border-bottom: 0.5rem solid var(--accent);
+        margin-top: 0.5rem;
+      }
     }
     img {
-      @include uiShadow;
+      @include imgShadow;
+      border-bottom:  0 solid var(--accent);
       cursor: pointer;
+      margin: 1rem 0.5rem 0;
       user-select: none;
+    }
+  }
+}
+
+.high-contrast .overview button {
+  img {
+    outline: 0.2rem solid var(--background);
+  }
+  &.active {
+    img {
+      outline: 0.2rem solid var(--accent);
     }
   }
 }

@@ -22,7 +22,7 @@
         border-bottom: 0 solid var(--accent);
         cursor: pointer;
         justify-self: center;
-        margin-top: 1rem;
+        margin: 1rem 0.5rem 0;
         max-height: 100%;
         max-width: 100%;
         min-width: 80px;
@@ -31,11 +31,18 @@
         transition: all $transition-time ease-out;
         user-select: none;
         &.active {
-          border-bottom: 1rem solid var(--accent);
-          margin-top: 0;
+          border-bottom: 0.5rem solid var(--accent);
+          margin-top: 0.5rem;
           opacity: 1;
         }
       } 
     }
+  }
+}
+
+.high-contrast .scan-nav-inner button img {
+  outline: 0.2rem solid var(--background);
+  &.active {
+    outline: 0.2rem solid var(--accent);
   }
 }

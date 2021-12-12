@@ -7,20 +7,25 @@ type ScanNavProps = {
   currentScan?: ScanProps;
 };
 
+/**
+ * <ScanNav>
+ *
+ * Takes an array of scans
+ */
 const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
   (
     { scans, onScanSelect, currentScan }: ScanNavProps,
     ref
   ): React.ReactElement => {
-    // DOM element refs
+    // DOM element refs.
     const btnRef = useRef<HTMLButtonElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Component scroll position state
+    // Component scroll position state.
     const [scrollPos, setScrollPos] = useState(0);
 
     useEffect(() => {
-      // Scroll to active on load
+      // Scroll to active on load.
       setTimeout(() => {
         if (containerRef.current && btnRef.current) {
           const offsetOuter =
@@ -35,7 +40,7 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
           );
         }
       }, 50);
-      // Horizontal scrolling on mouse wheel
+      // Horizontal scrolling on mouse wheel.
       containerRef.current?.addEventListener("wheel", (e) => {
         if (containerRef.current) {
           e.preventDefault();
@@ -44,6 +49,7 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
       });
     }, []);
 
+    // Activate the scroll whenever the position is updated
     useEffect(() => {
       containerRef.current?.scrollTo({ left: scrollPos, behavior: "auto" });
     }, [scrollPos]);
