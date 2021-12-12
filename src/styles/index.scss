@@ -41,6 +41,7 @@ button {
       width: 3rem;
       button {
         background-color: var(--background);
+        width: 100%;
       }
     }
   }
@@ -50,6 +51,7 @@ button {
     display: grid;
     grid-gap: 1rem;
     grid-template-rows: 3fr 1fr;
+    grid-template-columns: 1fr;
     max-height: 100%;
     padding: $margin;
   }

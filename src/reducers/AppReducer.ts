@@ -39,17 +39,13 @@ const AppReducer = (state: AppState, action: ActionType): AppState => {
       const volHighest = getHighestPage(
         state.scans.filter((scan) => scan.volume === action.payload)
       );
+      const newPage = state.page < volHighest ? state.page : volHighest;
       return {
         ...state,
         volume: action.payload,
         highestPage: volHighest,
-        page: state.page < volHighest ? state.page : volHighest,
-        currentScan: findScan(
-          state.scans,
-          state.page,
-          action.payload,
-          state.date
-        ),
+        page: newPage,
+        currentScan: findScan(state.scans, newPage, action.payload, state.date),
       };
     case Action.DATE_ADD:
     case Action.DATE_SUB:

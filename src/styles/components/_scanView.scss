@@ -1,8 +1,14 @@
+.show-overview .scan-view {
+  display: none;
+}
+
 .scan-view {
   height: 100%;
   overflow: visible;
   position: relative;
   width: 100%;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
   img {
     @include imgShadow;
     left: 50%;

@@ -101,9 +101,10 @@ function App(): React.ReactElement {
           <FontAwesomeIcon icon={faAdjust} />
         </Toggle>
       </header>
-      <main>
-        {state.scans.length &&
-          (showOverview ? (
+
+      <main className={showOverview ? "show-overview" : ""}>
+        {state.scans.length && (
+          <>
             <Overview
               scans={state.scans.filter((scan) => scan.volume === state.volume)}
               currentScan={state.currentScan}
@@ -112,28 +113,27 @@ function App(): React.ReactElement {
                 setShowOverview(false);
               }}
             />
-          ) : (
-            <>
-              <ScanView
-                currentScan={state.currentScan}
-                page={state.page}
-                styleCallback={setBackground}
-              />
-              <PageNav
-                scans={state.scans.filter(
-                  (scan) =>
-                    scan.volume === state.volume &&
-                    scan.pages.includes(state.page)
-                )}
-                page={state.page}
-                onScanSelect={(d) => {
-                  dispatch(Action.DATE_SET(d));
-                }}
-                currentScan={state.currentScan}
-              />
-            </>
-          ))}
+            <ScanView
+              currentScan={state.currentScan}
+              page={state.page}
+              styleCallback={setBackground}
+            />
+            <PageNav
+              scans={state.scans.filter(
+                (scan) =>
+                  scan.volume === state.volume &&
+                  scan.pages.includes(state.page)
+              )}
+              page={state.page}
+              onScanSelect={(d) => {
+                dispatch(Action.DATE_SET(d));
+              }}
+              currentScan={state.currentScan}
+            />
+          </>
+        )}
       </main>
+
       <nav>
         {!showOverview && (
           <Spinner
@@ -172,6 +172,44 @@ function App(): React.ReactElement {
       </nav>
     </>
   );
+
+  {
+    /*
+      <main>
+        {state.scans.length && ( 
+          <>
+          {showOverview && (
+            <Overview
+              scans={state.scans.filter((scan) => scan.volume === state.volume)}
+              currentScan={state.currentScan}
+              onScanSelect={(p) => {
+                dispatch(Action.PAGE_SET(p));
+                setShowOverview(false);
+              }}
+            />
+          )}
+              <ScanView
+                currentScan={state.currentScan}
+                page={state.page}
+                styleCallback={setBackground}
+              />
+              <PageNav
+                scans={state.scans.filter(
+                  (scan) =>
+                    scan.volume === state.volume &&
+                    scan.pages.includes(state.page)
+                )}
+                page={state.page}
+                onScanSelect={(d) => {
+                  dispatch(Action.DATE_SET(d));
+                }}
+                currentScan={state.currentScan}
+              />
+          </>
+        )}
+      </main>
+    */
+  }
 }
 
 export default App;
