@@ -3,16 +3,16 @@
   display: flex;
   width: 100%;
   button {
-    background-color: $background;
+    background-color: var(--background);
     border: none;
-    color: $neutral;
+    color: var(--neutral);
     cursor: pointer;
     flex: 1;
     font-size: $font-size;
     padding: $ui-padding;
     &.active {
-      background-color: $background--active;
-      color: $neutral;
+      background-color: var(--background--active);
+      color: var(--neutral);
     }
   }
 }

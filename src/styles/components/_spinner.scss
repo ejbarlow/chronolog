@@ -2,34 +2,33 @@
   @include uiShadow;
   display: flex;
   width: 100%;
-  form, button {
+  button {
     flex: 1;
   }
-  form {
-    input {
-      background-color: $background;
-      border-radius: 0;
-      border: none;
-      box-sizing: border-box;
-      color: #fff;
-      font-size: $font-size;
-      height: 100%;
-      padding: $ui-padding;
-      text-align: center;
-      width: 100%;
-      &:focus {
-        outline: none;
-      }
-      &::selection {
-        background-color: $background--active;
-      }
+  input {
+    background-color: var(--background);
+    border-radius: 0;
+    border: none;
+    box-sizing: border-box;
+    color: #fff;
+    flex: 1;
+    font-size: $font-size;
+    height: 100%;
+    padding: $ui-padding;
+    text-align: center;
+    width: 100%;
+    &:focus {
+      outline: none;
+    }
+    &::selection {
+      background-color: var(--background)--active;
     }
   }
 
   button {
-    background-color: $accent--highlight;
+    background-color: var(--accent--highlight);
     border: none;
-    color: $neutral;
+    color: var(--neutral);
     cursor: pointer;
     font-size: 2rem;
     font-weight: bold;

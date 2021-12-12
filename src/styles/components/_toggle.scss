@@ -1,11 +1,11 @@
 .toggle {
   @include uiShadow;
-  background-color: $accent;
+  background-color: var(--accent);
   .toggle-inner {
     align-items: center;
-    background-color: $accent--highlight;
+    background-color: var(--accent--highlight);
     border: none;
-    color: $neutral;
+    color: var(--neutral);
     cursor: pointer;
     cursor: pointer;
     display: flex;

@@ -13,11 +13,12 @@
     button {
       position: relative;
       img {
+        @include imgShadow;
         align-items: center;
-        border-bottom: 0 solid $accent;
-        border-top: 1rem solid transparent;
+        border-bottom: 0 solid var(--accent);
         cursor: pointer;
         justify-self: center;
+        margin-top: 1rem;
         max-height: 100%;
         max-width: 100%;
         min-width: 80px;
@@ -26,8 +27,8 @@
         transition: all $transition-time ease-out;
         user-select: none;
         &.active {
-          border-bottom: 1rem solid $accent;
-          border-top: 0 solid transparent;
+          border-bottom: 1rem solid var(--accent);
+          margin-top: 0;
           opacity: 1;
         }
       } 

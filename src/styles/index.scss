@@ -23,15 +23,26 @@ button {
   transition: background-color 0.2s;
   width: 100%;
   header {
+    @include uiShadow;
     align-items: center;
-    background-color: $accent;
+    background-color: var(--accent);
     color: white;
     display: flex;
     font-size: calc(6px + 1vmin);
+    justify-content: space-between;
     margin: 0 auto;
-    padding-left: $margin;
+    padding: 0 $margin;
     text-align: center;
     width: 100%;
+    .toggle-contrast {
+      box-shadow: none;
+      background-color: var(--background);
+      height: 3rem;
+      width: 3rem;
+      button {
+        background-color: var(--background);
+      }
+    }
   }
   main {
     box-sizing: border-box;
@@ -45,5 +56,6 @@ button {
   nav {
     display: flex;
     flex-direction: column;
+    overflow: visible;
   }
 }

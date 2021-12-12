@@ -13,11 +13,11 @@
 }
 
 *::-webkit-scrollbar-track {
-  background-color: $accent;
+  background-color: var(--accent);
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: $accent--highlight;
+  background-color: var(--accent--highlight);
   cursor: pointer;
 }
 

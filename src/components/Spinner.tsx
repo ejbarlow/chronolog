@@ -25,15 +25,13 @@ const Spinner: FC<SpinnerProps> = ({
       <button aria-label={labels.decrease} onClick={onDecrease}>
         <FontAwesomeIcon icon={faCaretLeft} />
       </button>
-      <form style={{}}>
-        <input
-          style={{}}
-          value={value}
-          onChange={(e) => {
-            onSet(parseInt(e.target.value));
-          }}
-        />
-      </form>
+      <input
+        style={{}}
+        value={value}
+        onChange={(e) => {
+          onSet(parseInt(e.target.value));
+        }}
+      />
       <button aria-label={labels.increase} onClick={onIncrease}>
         <FontAwesomeIcon icon={faCaretRight} />
       </button>

@@ -9,7 +9,7 @@ import PageNav from "./components/PageNav";
 import ScanView from "./components/ScanView";
 import VolNav from "./components/VolNav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChessBoard } from "@fortawesome/free-solid-svg-icons";
+import { faChessBoard, faAdjust } from "@fortawesome/free-solid-svg-icons";
 
 import "normalize.css";
 import "./styles/index.scss";
@@ -34,6 +34,7 @@ function App(): React.ReactElement {
   );
 
   const [showOverview, setShowOverview] = useState(false, "showOverview");
+  const [highContrast, setHighContrast] = useState(false, "highContrast");
   const [background, setBackground] = useState("#F0F0E9", "background");
   const overviewToggleRef = useRef(showOverview);
 
@@ -81,10 +82,24 @@ function App(): React.ReactElement {
     document.body.style.backgroundColor = background;
   }, [background]);
 
+  useEffect(() => {
+    document.body.className = highContrast ? "high-contrast" : "";
+  }, [highContrast]);
+
   return (
     <>
       <header>
         <h1>Chronolog</h1>
+        <Toggle
+          className="toggle-contrast"
+          value={highContrast}
+          setter={(val) => {
+            setHighContrast(val);
+          }}
+          label="Toggle high contrast theme"
+        >
+          <FontAwesomeIcon icon={faAdjust} />
+        </Toggle>
       </header>
       <main>
         {state.scans.length &&

@@ -1,3 +1,7 @@
 @mixin uiShadow {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
 }
+
+@mixin imgShadow {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+}

@@ -1,6 +1,6 @@
   h1 {
-    background-color: $accent--highlight;
-    color: $neutral;
+    background-color: var(--accent--highlight);
+    color: var(--neutral);
     font-size: 2rem;
     font-weight: 100;
     margin: 0;

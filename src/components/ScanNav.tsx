@@ -19,8 +19,8 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
     // Component scroll position state
     const [scrollPos, setScrollPos] = useState(0);
 
-    // Scroll to active on load
     useEffect(() => {
+      // Scroll to active on load
       setTimeout(() => {
         if (containerRef.current && btnRef.current) {
           const offsetOuter =
@@ -35,12 +35,17 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
           );
         }
       }, 50);
+      // Horizontal scrolling on mouse wheel
+      containerRef.current?.addEventListener("wheel", (e) => {
+        if (containerRef.current) {
+          e.preventDefault();
+          containerRef.current.scrollLeft += e.deltaY;
+        }
+      });
     }, []);
 
     useEffect(() => {
-      if (containerRef.current) {
-        containerRef.current.scrollTo({ left: scrollPos, behavior: "auto" });
-      }
+      containerRef.current?.scrollTo({ left: scrollPos, behavior: "auto" });
     }, [scrollPos]);
 
     return (

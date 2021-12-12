@@ -13,10 +13,11 @@
     max-width: 80px;
     width: 20%;
     &.active {
-      border-bottom: 1rem solid $accent;
-      border-top: 1rem solid $accent--highlight;
+      border-bottom: 1rem solid var(--accent);
+      border-top: 1rem solid var(--accent--highlight);
     }
     img {
+      @include uiShadow;
       cursor: pointer;
       user-select: none;
     }

@@ -4,6 +4,7 @@
   position: relative;
   width: 100%;
   img {
+    @include imgShadow;
     left: 50%;
     max-height: 100%;
     max-width: 100%;

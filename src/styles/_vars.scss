@@ -6,17 +6,17 @@ $ui-padding: 0.5rem 0;
 $transition-time: 0.1s;
 $transition-dist: 5%;
 
-$delta: hsl(60, 1%, 68%);
-$water: hsl(205, 51%, 88%);
-$cararra: hsl(60, 19%, 93%);
-$comfy: hsl(0, 51%, 88%);
-$dusty: hsl(0, 8%, 61%);
-
-$d: 22.5%;
-$l: 10%;
-
-$background: darken($delta, $d);
-$accent: darken($water, $d);
-$neutral: lighten($cararra, $d);
-$accent--highlight: darken($comfy, $d);
-$background--active: darken($comfy, $d);
+:root {
+  --background: hsl(60, 1%, 68%);
+  --accent: hsl(205, 51%, 88%);
+  --neutral: hsl(60, 19%, 93%);
+  --accent--highlight: hsl(0, 51%, 88%);
+  --background--active: hsl(0, 51%, 88%);
+  .high-contrast {
+    --background: hsl(60, 1%, 45%);
+    --accent: hsl(205, 51%, 65%);
+    --neutral: hsl(60, 19%, 100%);
+    --accent--highlight: hsl(0, 51%, 65%);
+    --background--active: hsl(0, 51%, 65%);
+  }
+}
