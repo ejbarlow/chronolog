@@ -22,6 +22,6 @@ export type ActionType =
   | { type: Action.DATE_SET; payload: Date }
   | {
       type: Action.SCANS_SRC;
-      payload: { scans: ScanProps[]; highestPage: number };
+      payload: ScanProps[];
     }
   | { type: Action.MANIFEST_SRC; payload: string };

@@ -32,19 +32,10 @@ export const PAGE_SET = (pageNum: number): ActionType => ({
   payload: pageNum,
 });
 
-export const SCANS_SRC = ({
-  scans,
-  highestPage,
-}: {
-  scans: ScanProps[];
-  highestPage: number;
-}): ActionType => {
+export const SCANS_SRC = (scans: ScanProps[]): ActionType => {
   return {
     type: Action.SCANS_SRC,
-    payload: {
-      scans,
-      highestPage,
-    },
+    payload: scans,
   };
 };
 

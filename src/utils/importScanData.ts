@@ -28,10 +28,7 @@ async function importScanDataFromManifest(manifestPath: string) {
       }
     }
   }
-  const highestPage: number = scans.reduce((pNum, { pages }) => {
-    return pages[pages.length - 1] > pNum ? pages[pages.length - 1] : pNum;
-  }, 0);
-  return { scans, highestPage };
+  return scans;
 }
 
 export { importScanDataFromManifest as default };

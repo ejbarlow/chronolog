@@ -85,15 +85,15 @@ const AppReducer = (state: AppState, action: ActionType): AppState => {
       };
     case Action.SCANS_SRC:
       const scansHighest = getHighestPage(
-        action.payload.scans.filter((scan) => scan.volume === state.volume)
+        action.payload.filter((scan) => scan.volume === state.volume)
       );
       return {
         ...state,
-        scans: action.payload.scans,
+        scans: action.payload,
         highestPage: scansHighest,
         page: state.page < scansHighest ? state.page : scansHighest,
         currentScan: findScan(
-          action.payload.scans,
+          action.payload,
           state.page,
           state.volume,
           state.date
