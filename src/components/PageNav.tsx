@@ -10,11 +10,11 @@ type PageNavProps = {
   currentScan?: ScanProps;
 };
 
-const PageNav = ({
+const PageNav: React.FC<PageNavProps> = ({
   scans,
   onScanSelect,
   currentScan,
-}: PageNavProps): React.ReactElement => {
+}) => {
   const scanNavNode = createRef<HTMLDivElement>();
   return (
     <TransitionGroup className="scan-nav">

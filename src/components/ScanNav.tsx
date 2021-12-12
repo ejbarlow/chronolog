@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ScanProps from "../types/ScanProps";
 
 type ScanNavProps = {
@@ -12,32 +12,34 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
     { scans, onScanSelect, currentScan }: ScanNavProps,
     ref
   ): React.ReactElement => {
+    // DOM element refs
     const btnRef = useRef<HTMLButtonElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
+
+    // Component scroll position state
     const [scrollPos, setScrollPos] = useState(0);
 
-    const scrollCallback = useCallback(() => {
-      if (containerRef.current && btnRef.current) {
-        const offsetOuter =
-          containerRef.current.getBoundingClientRect().width / 2;
-        const offsetInner = btnRef.current.getBoundingClientRect().width / 2;
-        setScrollPos(
-          btnRef.current.getBoundingClientRect().left -
-            containerRef.current.getBoundingClientRect().left -
-            containerRef.current.scrollLeft -
-            offsetOuter +
-            offsetInner
-        );
-      }
-    }, []);
-
+    // Scroll to active on load
     useEffect(() => {
-      setTimeout(scrollCallback, 50);
+      setTimeout(() => {
+        if (containerRef.current && btnRef.current) {
+          const offsetOuter =
+            containerRef.current.getBoundingClientRect().width / 2;
+          const offsetInner = btnRef.current.getBoundingClientRect().width / 2;
+          setScrollPos(
+            btnRef.current.getBoundingClientRect().left -
+              containerRef.current.getBoundingClientRect().left -
+              containerRef.current.scrollLeft -
+              offsetOuter +
+              offsetInner
+          );
+        }
+      }, 50);
     }, []);
 
     useEffect(() => {
       if (containerRef.current) {
-        containerRef.current.scrollTo({ left: scrollPos, behavior: "smooth" });
+        containerRef.current.scrollTo({ left: scrollPos, behavior: "auto" });
       }
     }, [scrollPos]);
 
