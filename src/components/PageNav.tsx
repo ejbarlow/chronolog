@@ -13,9 +13,6 @@ type PageNavProps = {
 /**
  * A container for holding instances of ScanNav and managing transitions
  * between sets.
- *
- * @param param A thing.
- * @param param.scans The scans.
  */
 const PageNav: React.FC<PageNavProps> = ({
   scans,

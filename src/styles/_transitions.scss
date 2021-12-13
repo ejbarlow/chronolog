@@ -1,5 +1,4 @@
-.nav-transition,
-.scan-transition {
+.nav-transition {
   &-enter {
     opacity: 0;
   }
@@ -18,6 +17,31 @@
     transition: all $transition-time ease-in;
   }
   &-exit-done {
+    opacity: 0;
+  }
+}
+.scan-transition {
+  &-enter {
+    opacity: 0;
+  }
+  &-enter-active {
+    opacity: 1;
+    transition: all $transition-time ease-in;
+  }
+  &-enter-done {
+    opacity: 1;
+  }
+  &-exit {
+    z-index: -1;
+    opacity: 1;
+  }
+  &-exit-active {
+    z-index: -1;
+    opacity: 0;
+    transition: all 0s ease-in $transition-time;
+  }
+  &-exit-done {
+    z-index: -1;
     opacity: 0;
   }
 }

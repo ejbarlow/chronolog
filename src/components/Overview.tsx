@@ -21,7 +21,9 @@ const Overview: React.FC<OverviewProps> = ({
   const containerRef = createRef<HTMLDivElement>();
   const [scrollPos, setScrollPos] = useState(0);
 
-  // Set the scroll position to show the active page on load.
+  /**
+   * Set the scroll position to show the active page on load.
+   */
   useEffect(() => {
     setTimeout(() => {
       if (containerRef.current && btnRef.current) {
@@ -33,7 +35,9 @@ const Overview: React.FC<OverviewProps> = ({
     }, 50);
   }, []);
 
-  // Scroll whenever scroll position is udpated.
+  /**
+   * Scroll whenever scroll position is udpated.
+   */
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollTo({ top: scrollPos, behavior: "smooth" });
