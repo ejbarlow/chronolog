@@ -6,8 +6,6 @@ type ScanImageProps = {
 };
 
 /**
- * <ScanImage>
- *
  * Takes a scan and HTMLImageElement ref (used for transitions) and returns
  * the image element for display.
  */

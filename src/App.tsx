@@ -10,6 +10,7 @@ import ScanView from "./components/ScanView";
 import VolNav from "./components/VolNav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChessBoard, faAdjust } from "@fortawesome/free-solid-svg-icons";
+import { throttle } from "lodash";
 
 import "normalize.css";
 import "./styles/index.scss";
@@ -34,11 +35,11 @@ function App(): React.ReactElement {
   );
 
   const [showOverview, setShowOverview] = useState(false, "showOverview");
-  const [highContrast, setHighContrast] = useState(false, "highContrast");
+  const [highContrast, setHighContrast] = useState(true, "highContrast");
   const [background, setBackground] = useState("#F0F0E9", "background");
   const overviewToggleRef = useRef(showOverview);
 
-  const keyHandler = (e: KeyboardEvent) => {
+  const keyHandler = throttle((e: KeyboardEvent) => {
     if (document.activeElement?.tagName.toUpperCase() === "INPUT") return;
     switch (e.code) {
       case "ArrowLeft":
@@ -59,7 +60,7 @@ function App(): React.ReactElement {
       default:
         break;
     }
-  };
+  }, 300);
 
   useEffect(() => {
     document.addEventListener("keydown", keyHandler);
@@ -96,7 +97,7 @@ function App(): React.ReactElement {
           setter={(val) => {
             setHighContrast(val);
           }}
-          label="Toggle high contrast theme"
+          ariaLabel="Toggle high contrast theme"
         >
           <FontAwesomeIcon icon={faAdjust} />
         </Toggle>
@@ -138,7 +139,7 @@ function App(): React.ReactElement {
         {!showOverview && (
           <Spinner
             value={state.page}
-            labels={{
+            ariaLabels={{
               decrease: "Previous page",
               increase: "Next page",
             }}
@@ -165,51 +166,13 @@ function App(): React.ReactElement {
           setter={(val) => {
             setShowOverview(val);
           }}
-          label="Toggle overview"
+          ariaLabel="Toggle overview"
         >
           <FontAwesomeIcon icon={faChessBoard} />
         </Toggle>
       </nav>
     </>
   );
-
-  {
-    /*
-      <main>
-        {state.scans.length && ( 
-          <>
-          {showOverview && (
-            <Overview
-              scans={state.scans.filter((scan) => scan.volume === state.volume)}
-              currentScan={state.currentScan}
-              onScanSelect={(p) => {
-                dispatch(Action.PAGE_SET(p));
-                setShowOverview(false);
-              }}
-            />
-          )}
-              <ScanView
-                currentScan={state.currentScan}
-                page={state.page}
-                styleCallback={setBackground}
-              />
-              <PageNav
-                scans={state.scans.filter(
-                  (scan) =>
-                    scan.volume === state.volume &&
-                    scan.pages.includes(state.page)
-                )}
-                page={state.page}
-                onScanSelect={(d) => {
-                  dispatch(Action.DATE_SET(d));
-                }}
-                currentScan={state.currentScan}
-              />
-          </>
-        )}
-      </main>
-    */
-  }
 }
 
 export default App;

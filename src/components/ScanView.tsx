@@ -10,21 +10,28 @@ type ScanViewProps = {
   styleCallback?: (arg0: string) => void;
 };
 
+// For dynamic background color.
 const fac = new FastAverageColor();
 
+/**
+ * A container for managing transitions between instances of ScanImage.
+ */
 const ScanView = ({
   currentScan,
   page,
   styleCallback,
 }: ScanViewProps): React.ReactElement => {
-  const [scanDir, setScanDir] = useState("scan-view--left");
+  // Class set on the parent to determine the direction of transition
+  const [scanDir, setScanDir] = useState("scan-view--static");
   const [displayPage, setDisplayPage] = useState(page);
   const scanViewNode = createRef<HTMLImageElement>();
   useEffect(() => {
+    // Set transition direction based on page number.
     const transitionDir =
       page > displayPage ? "left" : page < displayPage ? "right" : "static";
     setScanDir(`scan-view--${transitionDir}`);
     setDisplayPage(page);
+    // Update the dynamic background
     if (styleCallback && currentScan) {
       fac.getColorAsync(currentScan.path).then((color) => {
         styleCallback(color.hex);

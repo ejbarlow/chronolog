@@ -30,12 +30,12 @@
         position: relative;
         transition: all $transition-time ease-out;
         user-select: none;
-        &.active {
-          border-bottom: 0.5rem solid var(--accent);
-          margin-top: 0.5rem;
-          opacity: 1;
-        }
       } 
+      &.active img {
+        border-bottom: 0.5rem solid var(--accent);
+        margin-top: 0.5rem;
+        opacity: 1;
+      }
     }
   }
 }

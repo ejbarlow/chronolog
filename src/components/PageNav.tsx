@@ -11,8 +11,7 @@ type PageNavProps = {
 };
 
 /**
- * A container for holding instances of ScanNav and managing transitions
- * between sets.
+ * A container for managing transitions between instances of ScanNav.
  */
 const PageNav: React.FC<PageNavProps> = ({
   scans,

@@ -3,14 +3,17 @@ import React from "react";
 type ToggleProps = {
   value: boolean;
   setter: (arg0: boolean) => void;
-  label: string;
+  ariaLabel: string;
   className?: string;
 };
 
+/**
+ * Button for toggling a value.
+ */
 const Toggle: React.FC<ToggleProps> = ({
   value,
   setter,
-  label,
+  ariaLabel,
   className,
   children,
 }) => {
@@ -21,7 +24,7 @@ const Toggle: React.FC<ToggleProps> = ({
     <>
       <div className={classes.join(" ")}>
         <button
-          aria-label={label}
+          aria-label={ariaLabel}
           className="toggle-inner"
           onClick={() => {
             setter(!value);

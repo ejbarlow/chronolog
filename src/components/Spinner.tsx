@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretLeft, faCaretRight } from "@fortawesome/free-solid-svg-icons";
 
 type SpinnerProps = {
   value: number;
-  labels: {
+  ariaLabels: {
     decrease: string;
     increase: string;
   };
@@ -13,16 +13,19 @@ type SpinnerProps = {
   onSet: (pageNum: number) => void;
 };
 
-const Spinner: FC<SpinnerProps> = ({
+/**
+ * Spinner component for setting a value directly or with callbacks.
+ */
+const Spinner: React.FC<SpinnerProps> = ({
   value,
-  labels,
+  ariaLabels,
   onIncrease,
   onDecrease,
   onSet,
 }) => {
   return (
     <div className="spinner">
-      <button aria-label={labels.decrease} onClick={onDecrease}>
+      <button aria-label={ariaLabels.decrease} onClick={onDecrease}>
         <FontAwesomeIcon icon={faCaretLeft} />
       </button>
       <input
@@ -32,7 +35,7 @@ const Spinner: FC<SpinnerProps> = ({
           onSet(parseInt(e.target.value));
         }}
       />
-      <button aria-label={labels.increase} onClick={onIncrease}>
+      <button aria-label={ariaLabels.increase} onClick={onIncrease}>
         <FontAwesomeIcon icon={faCaretRight} />
       </button>
     </div>
