@@ -7,7 +7,6 @@ type VolNavProps = {
   currentVolume: number;
 };
 
-
 /**
  * Takes an array of scans and returns a group of buttons for navigating
  * between the volumes represented.
@@ -17,7 +16,6 @@ const VolNav: React.FC<VolNavProps> = ({
   volSetCallback,
   currentVolume,
 }) => {
-
   /**
    * Given an array of scans, returns an array containing all the unique
    * volume numbers represented.
@@ -32,8 +30,8 @@ const VolNav: React.FC<VolNavProps> = ({
           return [...volumes, scan.volume];
         }, [])
       )
-    )
-  }
+    );
+  };
 
   /**
    * Returns the button for a given volume.
@@ -41,7 +39,7 @@ const VolNav: React.FC<VolNavProps> = ({
    * @param vol The volume number for the button.
    * @return JSX.Element A button for setting the current volume.
    */
-  const volumeButton = (vol: number) => {
+  const volumeButton = (vol: number) => (
     <button
       aria-label={`Volume ${vol}`}
       className={vol === currentVolume ? "active" : ""}
@@ -50,12 +48,13 @@ const VolNav: React.FC<VolNavProps> = ({
     >
       {vol}
     </button>
-  }
+  );
 
   return (
-  <div className="vol-nav">
-    {getVolumeNumbers(scans).map((vol) => volumeButton(vol))}
-  </div>
-)}
+    <div className="vol-nav">
+      {getVolumeNumbers(scans).map((vol) => volumeButton(vol))}
+    </div>
+  );
+};
 
 export { VolNav as default };

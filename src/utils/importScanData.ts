@@ -2,6 +2,15 @@ import path from "path";
 import ScanProps from "../types/ScanProps";
 import id from "./generateId";
 
+/**
+ * Fetch a JSON manifest from the provided path, parse the JSON, construct a
+ * scan object for each listed scan, and return them all in an array.
+ *
+ * @param manifestPath Path to a JSON manifest.
+ *   See ../../utils/createScanManifest.js for more information.
+ * @return ScanProps[] An array containing the scan objects for all scans
+ *   listed in the manifest.
+ */
 async function importScanDataFromManifest(manifestPath: string) {
   const response = await fetch(manifestPath);
   const data = await response.json();

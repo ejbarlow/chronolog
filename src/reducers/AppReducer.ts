@@ -5,48 +5,70 @@ import ScanProps from "../types/ScanProps";
 const AppReducer = (state: AppState, action: ActionType): AppState => {
   let page;
   switch (action.type) {
-    case Action.PAGE_ADD:
-      page =
-        state.page + 2 <= state.highestPage
-          ? state.page + 2
-          : state.highestPage;
-      return {
-        ...state,
-        page,
-        currentScan: findScan(state.scans, page, state.volume, state.date),
-      };
-    case Action.PAGE_SUB:
-      page = state.page - 2 > 0 ? state.page - 2 : 0;
-      return {
-        ...state,
-        page,
-        currentScan: findScan(state.scans, page, state.volume, state.date),
-      };
+    /**
+     * Set, increment and decrement page number.
+     */
     case Action.PAGE_SET:
-      return action.payload > -1 && action.payload <= state.highestPage
-        ? {
-            ...state,
-            page: action.payload,
-            currentScan: findScan(
-              state.scans,
-              action.payload,
-              state.volume,
-              state.date
-            ),
-          }
-        : state;
+      page = Math.min(Math.max(action.payload, 0), state.highestPage);
+      return {
+        ...state,
+        page,
+        currentScan: findScan(state.scans, page, state.volume, state.date),
+      };
+
+    case Action.PAGE_ADD:
+      page = Math.min(state.page + 2, state.highestPage);
+      return {
+        ...state,
+        page,
+        currentScan: findScan(state.scans, page, state.volume, state.date),
+      };
+
+    case Action.PAGE_SUB:
+      page = Math.max(state.page - 2, 0);
+      return {
+        ...state,
+        page,
+        currentScan: findScan(state.scans, page, state.volume, state.date),
+      };
+
+    /**
+     * Set the volume number.
+     */
     case Action.VOL_SET:
-      const volHighest = getHighestPage(
-        state.scans.filter((scan) => scan.volume === action.payload)
+      const volScans = state.scans.filter(
+        (scan) => scan.volume === action.payload
       );
-      const newPage = state.page < volHighest ? state.page : volHighest;
+      if (!volScans.length) return state;
+      const volHighest = getHighestPage(volScans);
+      const newPage = Math.min(volHighest, state.page);
       return {
         ...state,
         volume: action.payload,
         highestPage: volHighest,
         page: newPage,
-        currentScan: findScan(state.scans, newPage, action.payload, state.date),
+        currentScan: findScan(volScans, newPage, action.payload, state.date),
       };
+
+    /**
+     * Set the date.
+     */
+    case Action.DATE_SET:
+      return {
+        ...state,
+        date: action.payload,
+        currentScan: findScan(
+          state.scans,
+          state.page,
+          state.volume,
+          action.payload
+        ),
+      };
+
+    /**
+     * Set the current scan to the previous/next one available for the
+     * current page & volume (if one exists).
+     */
     case Action.DATE_ADD:
     case Action.DATE_SUB:
       if (!state.currentScan) return state;
@@ -66,39 +88,31 @@ const AppReducer = (state: AppState, action: ActionType): AppState => {
         processedScans.length - 1
       );
       const nextScan = processedScans[nextIndex];
-
       return {
         ...state,
         date: nextScan.date,
         currentScan: nextScan,
       };
-    case Action.DATE_SET:
-      return {
-        ...state,
-        date: action.payload,
-        currentScan: findScan(
-          state.scans,
-          state.page,
-          state.volume,
-          action.payload
-        ),
-      };
+
+    /**
+     * Import a set of scans.
+     */
     case Action.SCANS_SRC:
       const scansHighest = getHighestPage(
         action.payload.filter((scan) => scan.volume === state.volume)
       );
+      page = Math.min(Math.max(state.page, 0), scansHighest);
       return {
         ...state,
         scans: action.payload,
         highestPage: scansHighest,
-        page: state.page < scansHighest ? state.page : scansHighest,
-        currentScan: findScan(
-          action.payload,
-          state.page,
-          state.volume,
-          state.date
-        ),
+        page,
+        currentScan: findScan(action.payload, page, state.volume, state.date),
       };
+
+    /**
+     * Import a JSON manifest.
+     */
     case Action.MANIFEST_SRC:
       return { ...state, manifestPath: action.payload };
     default:
@@ -106,6 +120,16 @@ const AppReducer = (state: AppState, action: ActionType): AppState => {
   }
 };
 
+/**
+ * Used to find `currentScan` - the scan taken closest to `state.date` of all
+ * versions of the current page and volume.
+ *
+ * @param scans An array containing all scans to be searched.
+ * @param page Find scans containing this page number.
+ * @param volume Find scans from this volume.
+ * @param date Find the scan taken closest to this date.
+ * @return ScanProps An array containing the most recent scan of each page,
+ */
 const findScan = (
   scans: ScanProps[],
   page: number,
@@ -128,9 +152,15 @@ const findScan = (
   return newScan;
 };
 
+/**
+ * Get the highest page number present in a given set of scans.
+ *
+ * @param scans The scans to parse.
+ * @return number The highest page number present.
+ */
 const getHighestPage = (scans: ScanProps[]) => {
-  const { pages } = scans.sort((a, b) => (a.pages[0] > b.pages[0] ? -1 : 1))[0];
-  return pages[pages.length - 1];
+  const max = Math.max(...scans.map((scan) => Math.max(...scan.pages)), 0);
+  return max;
 };
 
 export { AppReducer as default };

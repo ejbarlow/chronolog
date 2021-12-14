@@ -40,9 +40,11 @@
   }
 }
 
-.high-contrast .scan-nav-inner button img {
-  outline: 0.2rem solid var(--background);
-  &.active {
+.high-contrast .scan-nav-inner button {
+  img {
+    outline: 0.2rem solid var(--background);
+  }
+  &.active img {
     outline: 0.2rem solid var(--accent);
   }
 }

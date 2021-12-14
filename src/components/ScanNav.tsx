@@ -66,7 +66,7 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
      */
     const thumbnailButton = (scan: ScanProps) => {
       const active = scan.uid === currentScan?.uid;
-      const ariaLabel = `Select scan from ${scan.date}`
+      const ariaLabel = `Select scan from ${scan.date}`;
       const clickHandler = () => {
         onScanSelect(scan.date);
       };
