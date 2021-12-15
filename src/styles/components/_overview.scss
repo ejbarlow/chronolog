@@ -2,29 +2,24 @@
   display: none;
 }
 .show-overview .overview {
-  align-items: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem;
-  grid-column: 1 / 2;
   grid-row: 1 / 3;
-  height: 100%;
   justify-content: center;
   overflow-y: auto;
-  width: 100%;
   button {
-    margin: 1%;
+    margin: 2rem;
     &.active {
       img{
         border-bottom: 0.5rem solid var(--accent);
-        margin-top: 0.5rem;
+        margin-top: 0;
       }
     }
     img {
       @include imgShadow;
       border-bottom:  0 solid var(--accent);
       cursor: pointer;
-      margin: 1rem 0.5rem 0;
+      margin-top: 0.5rem;
       user-select: none;
     }
   }
