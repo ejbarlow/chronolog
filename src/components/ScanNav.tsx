@@ -85,7 +85,7 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
     };
 
     return (
-      <div ref={ref}>
+      <div className="scan-nav" ref={ref}>
         <div ref={containerRef} className="scan-nav-inner">
           {scans
             .sort((a, b) => (a.date > b.date ? 1 : -1))

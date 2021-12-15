@@ -3,9 +3,8 @@
 }
 
 .scan-nav {
-  >div {
-    height: 100%;
-  }
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
   &-inner {
     align-items: center;
     display: grid;
