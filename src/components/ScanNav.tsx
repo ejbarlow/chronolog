@@ -64,22 +64,27 @@ const ScanNav = React.forwardRef<HTMLDivElement, ScanNavProps>(
      * @return JSX.Element A button with props taken from the scan containing its
      *   thumbnail image.
      */
-    const thumbnailButton = (scan: ScanProps) => {
-      const active = scan.uid === currentScan?.uid;
-      const ariaLabel = `Select scan from ${scan.date}`;
+    const thumbnailButton = ({ uid, date, thumbPath }: ScanProps) => {
+      // Sensible date for the aria-label.
+      const fDate = date.toLocaleString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+      const active = uid === currentScan?.uid;
       const clickHandler = () => {
-        onScanSelect(scan.date);
+        onScanSelect(date);
       };
 
       return (
         <button
-          key={`thumb-${scan.uid}`}
+          key={`thumb-${uid}`}
           className={active ? "active" : ""}
           ref={active ? btnRef : null}
-          aria-label={ariaLabel}
+          aria-label={`Select scan from ${fDate}`}
           onClick={clickHandler}
         >
-          <img src={scan.thumbPath} />
+          <img src={thumbPath} />
         </button>
       );
     };
