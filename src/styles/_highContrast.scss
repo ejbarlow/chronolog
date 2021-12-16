@@ -1,0 +1,34 @@
+.high-contrast{
+  // Higher contrast color scheme.
+  --background: hsl(60, 1%, 45%);
+  --accent: hsl(205, 51%, 65%);
+  --neutral: hsl(60, 19%, 100%);
+  --accent--highlight: hsl(0, 51%, 65%);
+  --background--active: hsl(0, 51%, 65%);
+
+  // Additional elements for visual clarity.
+  .overview button {
+    img {
+      outline: 0.2rem solid var(--background);
+    }
+    &.active {
+      img {
+        outline: 0.2rem solid var(--accent);
+      }
+    }
+  }
+  
+  .scan-view img {
+    border: 0.5rem solid var(--accent);
+    border-radius: 0.5rem;
+  }
+
+  .scan-nav-inner button {
+    img {
+      outline: 0.2rem solid var(--background);
+    }
+    &.active img {
+      outline: 0.2rem solid var(--accent);
+    }
+  }
+}

@@ -104,7 +104,7 @@ function App(): React.ReactElement {
     }
   }, 300);
 
-  // Add once on load and provide return value to clean up.
+  // Add listeners once on load and provide return value to clean up.
   useEffect(() => {
     document.addEventListener("keydown", keyHandler);
     return () => {

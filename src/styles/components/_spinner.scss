@@ -9,14 +9,11 @@
     background-color: var(--background);
     border-radius: 0;
     border: none;
-    box-sizing: border-box;
     color: #fff;
     flex: 1;
     font-size: $font-size;
-    height: 100%;
     padding: $ui-padding;
     text-align: center;
-    width: 100%;
     &:focus {
       outline: none;
     }
@@ -31,7 +28,6 @@
     color: var(--neutral);
     cursor: pointer;
     font-size: 2rem;
-    font-weight: bold;
     padding: 0;
     user-select: none;
   }

@@ -12,11 +12,4 @@ $transition-dist: 5%;
   --neutral: hsl(60, 19%, 93%);
   --accent--highlight: hsl(0, 51%, 88%);
   --background--active: hsl(0, 51%, 88%);
-  .high-contrast {
-    --background: hsl(60, 1%, 45%);
-    --accent: hsl(205, 51%, 65%);
-    --neutral: hsl(60, 19%, 100%);
-    --accent--highlight: hsl(0, 51%, 65%);
-    --background--active: hsl(0, 51%, 65%);
-  }
 }

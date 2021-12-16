@@ -1,7 +1,3 @@
-.show-overview .scan-nav {
-  display: none;
-}
-
 .scan-nav {
   grid-column: 1 / 2;
   grid-row: 2 / 3;
@@ -16,7 +12,7 @@
         @include imgShadow;
         border-bottom: 0 solid var(--accent);
         cursor: pointer;
-        margin: 1rem 0.5rem 0;
+        margin: 0.5rem 0 0;
         width: 80px;
         opacity: 0.75;
         transition: all $transition-time ease-out;
@@ -24,18 +20,9 @@
       }
       &.active img {
         border-bottom: 0.5rem solid var(--accent);
-        margin-top: 0.5rem;
+        margin-top: 0;
         opacity: 1;
       }
     }
-  }
-}
-
-.high-contrast .scan-nav-inner button {
-  img {
-    outline: 0.2rem solid var(--background);
-  }
-  &.active img {
-    outline: 0.2rem solid var(--accent);
   }
 }

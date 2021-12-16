@@ -1,17 +1,14 @@
 .toggle {
   @include uiShadow;
   background-color: var(--accent);
+  display: flex;
+  justify-content: center;
   .toggle-inner {
-    align-items: center;
     background-color: var(--accent--highlight);
     border: none;
     color: var(--neutral);
     cursor: pointer;
-    cursor: pointer;
-    display: flex;
     font-size: 2rem;
-    justify-content: center;
-    margin: 0 auto;
     padding: $ui-padding;
     transition: width 0.2s;
     user-select: none;

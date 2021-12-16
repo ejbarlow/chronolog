@@ -1,27 +1,13 @@
-.show-overview .scan-view {
-  display: none;
-}
-
 .scan-view {
-  height: 100%;
-  overflow: visible;
-  position: relative;
-  width: 100%;
+  align-items: center;
+  display: flex;
   grid-row: 1 / 2;
   grid-column: 1 / 2;
+  justify-content: center;
   img {
     @include imgShadow;
-    left: 50%;
     max-height: 100%;
     max-width: 100%;
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
     user-select: none;
   }
-}
-
-.high-contrast .scan-view img {
-  border: 0.5rem solid var(--accent);
-  border-radius: 0.5rem;
 }

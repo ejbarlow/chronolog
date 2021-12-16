@@ -1,7 +1,6 @@
 .vol-nav {
   @include uiShadow;
   display: flex;
-  width: 100%;
   button {
     background-color: var(--background);
     border: none;
