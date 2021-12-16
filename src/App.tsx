@@ -1,22 +1,45 @@
+/**
+ * node_modules/
+ */
 import React, { useEffect, useRef } from "react";
 import { useState, useReducer } from "reinspect";
-import * as Action from "./actions/Actions";
-import AppReducer from "./reducers/AppReducer";
-import AppState from "./types/AppState";
-import importScanData from "./utils/importScanData";
-import Spinner from "./components/Spinner";
-import PageNav from "./components/PageNav";
-import ScanView from "./components/ScanView";
-import VolNav from "./components/VolNav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChessBoard, faAdjust } from "@fortawesome/free-solid-svg-icons";
 import { throttle } from "lodash";
-
 import "normalize.css";
-import "./styles/index.scss";
-import Overview from "./components/Overview";
-import Toggle from "./components/Toggle";
 
+/**
+ * State and Type management.
+ */
+import * as Action from "./actions/Actions";
+import AppReducer from "./reducers/AppReducer";
+import AppState from "./types/AppState";
+
+/**
+ * Utils.
+ */
+import importScanData from "./utils/importScanData";
+
+/**
+ * Components.
+ */
+import {
+  Overview,
+  PageNav,
+  ScanView,
+  Spinner,
+  Toggle,
+  VolNav,
+} from "./components";
+
+/**
+ * Styles.
+ */
+import "./styles/index.scss";
+
+/**
+ * Initial app state.
+ */
 const initialState: AppState = {
   scans: [],
   volume: 1,
@@ -27,6 +50,7 @@ const initialState: AppState = {
 };
 
 function App(): React.ReactElement {
+  // Named reducer hook to enable redux dev tools via reinspect.
   const [state, dispatch] = useReducer(
     AppReducer,
     initialState,
@@ -34,11 +58,29 @@ function App(): React.ReactElement {
     "Chronolog"
   );
 
+  /**
+   * Local UI state hooks.
+   */
   const [showOverview, setShowOverview] = useState(false, "showOverview");
   const [highContrast, setHighContrast] = useState(true, "highContrast");
   const [background, setBackground] = useState("#F0F0E9", "background");
   const overviewToggleRef = useRef(showOverview);
 
+  useEffect(() => {
+    overviewToggleRef.current = showOverview;
+  }, [showOverview]);
+
+  useEffect(() => {
+    document.body.className = highContrast ? "high-contrast" : "";
+  }, [highContrast]);
+
+  useEffect(() => {
+    document.body.style.backgroundColor = background;
+  }, [background]);
+
+  /**
+   * Keyboard events throttled to 300ms.
+   */
   const keyHandler = throttle((e: KeyboardEvent) => {
     if (document.activeElement?.tagName.toUpperCase() === "INPUT") return;
     switch (e.code) {
@@ -62,6 +104,7 @@ function App(): React.ReactElement {
     }
   }, 300);
 
+  // Add once on load and provide return value to clean up.
   useEffect(() => {
     document.addEventListener("keydown", keyHandler);
     return () => {
@@ -69,23 +112,14 @@ function App(): React.ReactElement {
     };
   }, []);
 
-  useEffect(() => {
-    overviewToggleRef.current = showOverview;
-  }, [showOverview]);
-
+  /**
+   * Refresh the scans when a new manifest path is provided.
+   */
   useEffect(() => {
     importScanData(state.manifestPath).then((scanData) => {
       dispatch(Action.SCANS_SRC(scanData));
     });
   }, [state.manifestPath]);
-
-  useEffect(() => {
-    document.body.style.backgroundColor = background;
-  }, [background]);
-
-  useEffect(() => {
-    document.body.className = highContrast ? "high-contrast" : "";
-  }, [highContrast]);
 
   return (
     <>

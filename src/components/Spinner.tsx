@@ -32,7 +32,8 @@ const Spinner: React.FC<SpinnerProps> = ({
         style={{}}
         value={value}
         onChange={(e) => {
-          onSet(parseInt(e.target.value));
+          const newVal = parseInt(e.target.value);
+          onSet(isNaN(newVal) ? value : newVal);
         }}
       />
       <button aria-label={ariaLabels.increase} onClick={onIncrease}>
