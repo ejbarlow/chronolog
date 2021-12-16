@@ -1,0 +1,22 @@
+.scan-view {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  overflow: visible;
+  position: relative;
+  @media (orientation: landscape) { 
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+  }
+  img {
+    @include imgShadow;
+    left: 50%;
+    max-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 50%;
+    user-select: none;
+  }
+  &--static img {
+    transform: translate(-50%, -50%);
+  }
+}

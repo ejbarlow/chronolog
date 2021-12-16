@@ -1,0 +1,56 @@
+.spinner {
+  @include uiShadow;
+  display: flex;
+  width: 100%;
+  @media (orientation: landscape) { 
+    grid-row: 3 / 4;
+  }
+  input {
+    background-color: var(--complement--tint);
+    border-radius: 0;
+    border: none;
+    color: var(--text--dark);
+    flex: 1;
+    font-size: $font-size;
+    padding: $ui-padding;
+    text-align: center;
+    transition: all $transition-color-time;
+    @media (orientation: landscape) { 
+      width: 33%;
+    }
+    &:focus {
+      outline: none;
+    }
+    &::selection {
+      background-color: var(--complement);
+    }
+  }
+
+  button {
+    background-color: var(--complement);
+    border: none;
+    color: var(--text--light);
+    cursor: pointer;
+    flex: 1;
+    font-size: 2rem;
+    padding: 0;
+    transition: all $transition-color-time;
+    user-select: none;
+    svg {
+      transition: all $transition-time;
+    }
+    &:hover {
+      background-color: var(--complement--active);
+      &:first-of-type { 
+        svg {
+          margin-right: 0.5rem;
+        }
+      }
+      &:last-of-type {
+        svg {
+          margin-left: 0.5rem;
+        }
+      }
+    }
+  }
+}

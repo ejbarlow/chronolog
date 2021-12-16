@@ -1,0 +1,33 @@
+.overview {
+  display: none;
+}
+
+.show-overview {
+  .scan-nav,
+  .scan-view {
+    display: none;
+  }
+  .overview {
+    display: flex;
+    flex-wrap: wrap;
+    grid-column: 1 / 3;
+    grid-row: 1 / 3;
+    justify-content: center;
+    overflow-y: auto;
+    button {
+      margin: 2rem;
+      img {
+        @include imgShadow;
+        border-bottom:  0 solid var(--complement);
+        cursor: pointer;
+        margin-top: 0.5rem;
+        margin: 0.5rem 0.2rem 0;
+        user-select: none;
+      }
+      &.active img {
+        border-bottom: 0.5rem solid var(--complement--active);
+        margin-top: 0;
+      }
+    }
+  }
+}

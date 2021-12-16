@@ -1,6 +1,8 @@
 # ChronoLog
 
-Image viewer for sequential pages of scans, with support for multiple versions of a page, each scanned on a different date.
+Image viewer for sequential pages of scans, with support for multiple versions of a page, each scanned on a different date. Generic image gallery demo at [demo.ejbarlow.co.uk](https://demo.ejbarlow.co.uk:3000).
+
+![Gallery demo recording](public/demo.gif)
 
 Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -24,9 +26,9 @@ Fixes a compatibility issue by modifying the webpackConfig of `react-scripts` to
 
 See `/utils/createScanManifest.js` for more details.
 
-### `yarn test`
+### `yarn lint`
 
-Launches Jest in the interactive watch mode.
+Runs eslint on the source. Ignores `./utils/`, which contains the Node utility scripts. ChronoLog uses the `airbnb` config, with additional packages for typescript and react hooks support.
 
 ### `yarn build`
 

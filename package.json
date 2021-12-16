@@ -1,9 +1,13 @@
 {
   "name": "chronolog",
-  "version": "0.1.0",
+  "version": "0.0.1-beta",
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.16",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -11,12 +15,26 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@types/react-transition-group": "^4.4.4",
     "@types/webpack-env": "^1.16.2",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
     "@typescript-eslint/typescript-estree": "^4.29.1",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^1.7.0",
+    "fast-average-color": "^7.0.1",
+    "lodash": "^4.17.21",
     "node-sass": "^5.0.",
+    "normalize.css": "^8.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "react-transition-group": "^4.4.2",
     "typescript": "^4.2.0",
     "web-vitals": "^1.0.1"
   },
@@ -26,14 +44,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "create-manifest": "node utils/createScanManifest.js",
-    "patch-api": "node utils/patchWebpackConfig.js"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest",
-      "eslint:recommended"
-    ]
+    "patch-api": "node utils/patchWebpackConfig.js",
+    "lint": "eslint ."
   },
   "browserslist": {
     "production": [
@@ -46,5 +58,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/lodash": "^4.14.177",
+    "reinspect": "^1.1.0"
   }
 }

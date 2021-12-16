@@ -1,0 +1,37 @@
+.vol-nav {
+  @include uiShadow;
+  display: flex;
+  button {
+    background-color: var(--complement);
+    border: none;
+    color: var(--text--light);
+    cursor: pointer;
+    flex: 1;
+    font-size: $font-size;
+    padding: $ui-padding;
+    transition: all $transition-color-time;
+    &.active {
+      background-color: var(--complement--active);
+    }
+    svg {
+      transition: margin $transition-time;
+    }
+    &:hover {
+      background-color: var(--complement--active);
+      svg {
+        margin: 0 0.1rem;
+      }
+    }
+  }
+}
+
+@media (orientation: landscape) {
+  .vol-nav {
+    flex-direction: column;
+    grid-row: 2 / 3;
+    height: 100%;
+  }
+  .show-overview .vol-nav {
+    grid-row: 2 / 4;
+  }
+}

@@ -1,0 +1,27 @@
+.high-contrast{
+  // Additional elements for visual clarity.
+  .overview button {
+    img {
+      outline: 0.2rem solid var(--complement);
+    }
+    &.active {
+      img {
+        outline: 0.2rem solid var(--complement--active);
+      }
+    }
+  }
+  
+  .scan-view img {
+    border: 0.5rem solid var(--complement);
+    border-radius: 0.5rem;
+  }
+
+  .scan-nav-inner button {
+    img {
+      outline: 0.2rem solid var(--complement);
+    }
+    &.active img {
+      outline: 0.2rem solid var(--complement--active);
+    }
+  }
+}

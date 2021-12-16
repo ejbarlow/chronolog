@@ -1,0 +1,25 @@
+.toggle {
+  @include uiShadow;
+  background-color: var(--base);
+  display: flex;
+  justify-content: center;
+  transition: all $transition-color-time;
+  .toggle-inner {
+    background-color: var(--complement);
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 2rem;
+    padding: $ui-padding;
+    transition: width $transition-time, background-color $transition-color-time, color $transition-color-time;
+    user-select: none;
+    width: 33%;
+    &:hover {
+      background-color: var(--complement--active);
+      width:  50%;
+    }
+  }
+  &.active .toggle-inner {
+      width: 100%;
+  }
+}

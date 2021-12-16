@@ -28,8 +28,6 @@ const COL = {
 };
 
 /**
- * log();
- *
  * Logging function with prefix and colors.
  *
  * @param msg - Message to log.
@@ -37,7 +35,11 @@ const COL = {
  */
 
 const log = (msg, color = "fgWhite") => {
-  console.log(`${COL.dim}[cl] : ${COL.reset}${COL[color]}${msg}${COL.reset}`);
+  const displayMessage = msg
+    ? `${COL.dim}[cl] : ${COL.reset}${COL[color]}${msg}${COL.reset}`
+    : "";
+  // eslint-disable-next-line no-console
+  console.log(displayMessage);
 };
 
 export { log as default };
