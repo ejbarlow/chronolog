@@ -154,7 +154,7 @@ function App(): React.ReactElement {
   return (
     <>
       <header>
-        <h1>Chronolog</h1>
+        <h1>Gallery Demo</h1>
         <Toggle
           className="toggle-contrast"
           value={highContrast}

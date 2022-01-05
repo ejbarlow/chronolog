@@ -12,7 +12,7 @@
 /build
 
 # dynamic assets
-/public/scans
+# /public/scans
 
 # misc
 .DS_Store
