@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChessBoard, faAdjust } from "@fortawesome/free-solid-svg-icons";
 import { throttle } from "lodash";
 import "normalize.css";
+import Swal from "sweetalert2";
 
 /**
  * State and Type management.
@@ -140,6 +141,25 @@ function App(): React.ReactElement {
     return () => {
       document.removeEventListener("keydown", keyHandler);
     };
+  }, []);
+
+  /**
+   * Info modal
+   */
+  useEffect(() => {
+    Swal.fire({
+      title: "Hello",
+      html: `<p><a href="https://github.com/ejbarlow/chronolog" target="_blank">ChronoLog</a> is an image viewer designed for exploring scans taken of a sketchbook or journal as it changes over time.</p>
+        <p>This demo is configured as a more generic gallery using images from a <a href="https://www.ghibli.jp/info/013344/" target="_blank">collection released by Studio Ghibli</a>. All images from a given movie are grouped as if it were its own book. They are then loosely collated by colour, with each group representing a chronological sequence of scans of the same page.</p>
+      <p>See more details on <a href="https://github.com/ejbarlow/chronolog#readme" target="_blank">GitHub</a>.</p>`,
+      confirmButtonColor: "hsl(257.107, 30.0872%, 60%)",
+      confirmButtonText: "Dismiss",
+      customClass: {
+        title: "intro-title",
+        htmlContainer: "intro-content",
+        actions: "intro-confirm",
+      },
+    });
   }, []);
 
   /**

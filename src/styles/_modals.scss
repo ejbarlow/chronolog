@@ -1,0 +1,19 @@
+.swal2-container {
+  .intro {
+    &-title,
+    &-content {
+      text-align: left;
+      a {
+        color: hsl(257.107, 30.0872%, 60%);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    &-confirm { 
+      justify-content: flex-end;
+      margin: 1.25rem 1.25rem 0;
+    }
+  }
+}

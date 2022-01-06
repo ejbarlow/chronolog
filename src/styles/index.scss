@@ -17,6 +17,7 @@
   inset: 0;
   position: fixed;
   transition: background-color $transition-color-time;
+  width: 100%;
   @media (orientation: landscape) { 
     grid-template-columns: 5fr 9rem;
     grid-template-rows: 3rem 1fr;
